@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="773.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.BankController">
+   <top>
+      <AnchorPane prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: #8a817c;" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER_RIGHT" layoutX="820.0" layoutY="27.0" mnemonicParsing="false" onAction="#switchNext" style="-fx-background-color: #0099ff;" styleClass="next" text="Next" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="14.6666666666667">
+            </Button>
+            <Label alignment="CENTER_RIGHT" layoutX="348.0" layoutY="13.0" prefHeight="49.0" prefWidth="136.0" styleClass="title" text="Bank" textAlignment="CENTER" textFill="WHITE">
+            </Label>
+            <Button layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchBack" style="-fx-background-color: #0099ff;" text="Back" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="349.0" prefWidth="378.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="175.0" text="Bank Name" />
+            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="Intrest Rate in %" />
+            <TextField fx:id="name" layoutX="202.0" layoutY="21.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="173.0" text="Address" />
+            <TextField fx:id="address" layoutX="201.0" layoutY="102.0" prefHeight="25.0" prefWidth="165.0" />
+            <Button layoutX="79.0" layoutY="204.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
+
+            </Button>
+            <Button layoutX="238.0" layoutY="204.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #eec591;" text="Save">
+            </Button>
+            <TextField fx:id="intrestRate" layoutX="202.0" layoutY="59.0" prefHeight="25.0" prefWidth="163.0" />
+            <TextField fx:id="phone" layoutX="201.0" layoutY="149.0" prefHeight="25.0" prefWidth="165.0" />
+            <Label layoutX="10.0" layoutY="147.0" prefHeight="30.0" prefWidth="173.0" text="Phone" />
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <TableView prefHeight="475.0" prefWidth="513.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="75.0" resizable="false" text="bankId" />
+          <TableColumn prefWidth="84.0" text="name" />
+            <TableColumn prefWidth="66.0" text="address" />
+            <TableColumn prefWidth="75.0" text="intrest rate" />
+            <TableColumn prefWidth="75.0" text="phone" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="94.0" prefWidth="905.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="90.0" fitWidth="185.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/bank.jpg" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER_RIGHT" layoutX="675.0" layoutY="31.0" mnemonicParsing="false" onAction="#switchHome" style="-fx-background-color: #0099ff;" styleClass="next" text="Home Page" textAlignment="RIGHT" textFill="WHITE" />
+         </children></AnchorPane>
+   </bottom>
+     <right>
+      <AnchorPane prefHeight="446.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="60.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
+
+            </Button>
+            <Button layoutX="53.0" layoutY="73.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
+
+            </Button>
+            <Label layoutX="18.0" layoutY="14.0" prefHeight="42.0" prefWidth="129.0" text="Select bank from table and click on edit" wrapText="true" />
+            <Label layoutX="20.0" layoutY="119.0" prefHeight="42.0" prefWidth="129.0" text="Select bank from table and click on delete" wrapText="true" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

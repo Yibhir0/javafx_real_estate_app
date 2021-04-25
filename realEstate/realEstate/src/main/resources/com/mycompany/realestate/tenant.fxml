@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="905.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.TenantController">
+   <top>
+      <AnchorPane prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: #b392ac;" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER_RIGHT" layoutX="820.0" layoutY="27.0" mnemonicParsing="false" onAction="#switchNext" style="-fx-background-color: #0099ff;" styleClass="next" text="Next" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="14.6666666666667">
+            </Button>
+            <Label alignment="CENTER_RIGHT" layoutX="534.0" layoutY="14.0" prefHeight="49.0" prefWidth="136.0" styleClass="title" text="Tenant" textAlignment="CENTER" textFill="WHITE">
+            </Label>
+            <Button layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchBack" style="-fx-background-color: #0099ff;" text="Back" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="349.0" prefWidth="378.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="175.0" text="Driver Licence #" />
+            <TextField layoutX="201.0" layoutY="22.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="Full Name" />
+            <TextField layoutX="201.0" layoutY="60.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="173.0" text="Email Address" />
+            <TextField layoutX="201.0" layoutY="102.0" prefHeight="25.0" prefWidth="165.0" />
+            <Label layoutX="10.0" layoutY="145.0" prefHeight="30.0" prefWidth="173.0" text="Phone Number" />
+            <TextField layoutX="201.0" layoutY="147.0" prefHeight="25.0" prefWidth="167.0" />
+            <Button layoutX="83.0" layoutY="201.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
+
+            </Button>
+            <Button layoutX="221.0" layoutY="201.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #eec591;" text="Save">
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <TableView prefHeight="475.0" prefWidth="513.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="75.0" resizable="false" text="tenantId" />
+          <TableColumn prefWidth="75.0" text="name" />
+            <TableColumn prefWidth="75.0" text="identity#" />
+            <TableColumn prefWidth="75.0" text="Email" />
+            <TableColumn prefWidth="75.0" text="Phone" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="94.0" prefWidth="905.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="140.0" fitWidth="210.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/tenant.jpg" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER_RIGHT" layoutX="792.0" layoutY="22.0" mnemonicParsing="false" onAction="#switchHome" style="-fx-background-color: #0099ff;" styleClass="next" text="Home Page" textAlignment="RIGHT" textFill="WHITE" />
+            <Label layoutX="350.0" layoutY="-7.0" prefHeight="107.0" prefWidth="204.0" text="Once  a Tenant is added, make sure to add/create a lease for the added tenant" wrapText="true" />
+         </children></AnchorPane>
+   </bottom>
+       <right>
+      <AnchorPane prefHeight="446.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="60.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
+
+            </Button>
+            <Button layoutX="53.0" layoutY="73.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
+
+            </Button>
+            <Label layoutX="18.0" layoutY="14.0" prefHeight="42.0" prefWidth="129.0" text="Select tenant from table and click on edit" wrapText="true" />
+            <Label layoutX="20.0" layoutY="119.0" prefHeight="42.0" prefWidth="129.0" text="Select tenant from table and click on delete" wrapText="true" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

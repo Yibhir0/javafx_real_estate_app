@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="905.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.LeaseController">
+   <top>
+      <AnchorPane prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: #2a9d8f;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="backButton" alignment="CENTER_RIGHT" layoutX="820.0" layoutY="27.0" mnemonicParsing="false" onAction="#switchNext" style="-fx-background-color: #0099ff;" styleClass="next" text="Next" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="14.6666666666667">
+            </Button>
+            <Label alignment="CENTER_RIGHT" layoutX="534.0" layoutY="14.0" prefHeight="49.0" prefWidth="136.0" styleClass="title" text="Lease" textAlignment="CENTER" textFill="WHITE">
+            </Label>
+            <Button fx:id="backButton1" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchBack" style="-fx-background-color: #0099ff;" text="Back" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="457.0" prefWidth="421.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="175.0" text="TenantId" />
+            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="PropertyId" />
+            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="173.0" text="LeaseTerm( number of months)" />
+            <TextField layoutX="201.0" layoutY="102.0" prefHeight="25.0" prefWidth="165.0" />
+            <Label layoutX="10.0" layoutY="145.0" prefHeight="30.0" prefWidth="173.0" text="startDate" />
+            <Button layoutX="35.0" layoutY="238.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
+
+            </Button>
+            <Button layoutX="300.0" layoutY="238.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #eec591;" text="Save">
+            </Button>
+            <DatePicker layoutX="201.0" layoutY="147.0" prefHeight="25.0" prefWidth="165.0" />
+            <ComboBox layoutX="201.0" layoutY="21.0" prefHeight="25.0" prefWidth="163.0" promptText="Choose BankId" />
+            <ComboBox layoutX="201.0" layoutY="59.0" prefHeight="25.0" prefWidth="163.0" promptText="Choose PropertyId" />
+            <Label layoutX="9.0" layoutY="185.0" prefHeight="30.0" prefWidth="173.0" text="Renewal ( enter yes or no)" />
+            <TextField layoutX="201.0" layoutY="187.0" prefHeight="25.0" prefWidth="165.0" />
+         </children>
+      </AnchorPane>
+   </left>
+   <bottom>
+      <AnchorPane prefHeight="94.0" prefWidth="905.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="99.0" fitWidth="200.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/lease.jpg" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER_RIGHT" layoutX="799.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchHome" style="-fx-background-color: #0099ff;" styleClass="next" text="Home Page" textAlignment="RIGHT" textFill="WHITE" />
+         </children></AnchorPane>
+   </bottom>
+   <center>
+      <TableView prefHeight="457.0" prefWidth="508.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="122.00000250339508" resizable="false" text="leaseId" />
+          <TableColumn minWidth="4.0" prefWidth="121.33336639404297" text="propertyId" />
+            <TableColumn prefWidth="90.00007629394531" text="startDate" />
+            <TableColumn prefWidth="129.33331298828125" text="term" />
+            <TableColumn prefWidth="128.66665649414062" text="tenantId" />
+            <TableColumn prefWidth="75.0" text="renewal" />
+        </columns>
+       
+      </TableView>
+   </center>
+      <right>
+      <AnchorPane prefHeight="446.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="60.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
+
+            </Button>
+            <Button layoutX="53.0" layoutY="73.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
+
+            </Button>
+            <Label layoutX="18.0" layoutY="14.0" prefHeight="42.0" prefWidth="129.0" text="Select lease from table and click on edit" wrapText="true" />
+            <Label layoutX="20.0" layoutY="119.0" prefHeight="42.0" prefWidth="129.0" text="Select  lease from table and click on delete" wrapText="true" />
+            <Label layoutX="20.0" layoutY="236.0" prefHeight="42.0" prefWidth="129.0" text="Select  lease from table and click on view" wrapText="true" />
+            <Button layoutX="68.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchToView" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #aaf683;" text="View" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

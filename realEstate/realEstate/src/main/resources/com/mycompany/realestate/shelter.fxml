@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane id="ctr" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="670.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.PrimaryController">
+   <top>
+      <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="61.0" prefWidth="647.0" style="-fx-background-color: #353745;" styleClass="title" text="This is Your Home" textFill="WHITE" BorderPane.alignment="CENTER">
+      
+      </Label>
+   </top>
+   <left>
+      <AnchorPane prefHeight="398.0" prefWidth="272.0" style="-fx-background-color: #353745;" styleClass="bblue" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="88.0" layoutY="1.0" prefHeight="26.0" prefWidth="97.0" styleClass="underln" text="Services" textFill="WHITE" underline="true">
+            
+            </Label>
+            <VBox layoutX="58.0" layoutY="32.0" prefHeight="363.0" prefWidth="158.0">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToProperty" prefHeight="13.0" prefWidth="159.0" style="-fx-background-color: #0099ff;" text="Property" textFill="WHITE" />
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchToLease" prefHeight="25.0" prefWidth="159.0" style="-fx-background-color: #0099ff;" text="Lease" textFill="WHITE" />
+                  <Button layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#switchToTenant" prefHeight="25.0" prefWidth="161.0" style="-fx-background-color: #0099ff;" text="Tenant" textFill="WHITE" />
+                  <Button layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#switchToRent" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: #0099ff;" text="Rent" textFill="WHITE" />
+                  <Button layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#switchToMortgage" prefHeight="25.0" prefWidth="161.0" style="-fx-background-color: #0099ff;" text="Mortgage" textFill="WHITE" />
+                  <Button layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchToBank" prefHeight="25.0" prefWidth="161.0" style="-fx-background-color: #0099ff;" text="Bank" textFill="WHITE" />
+                  <Button layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#switchToRepair" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: #0099ff;" text="Repair" textFill="WHITE" />
+                  <Button layoutX="10.0" layoutY="250.0" mnemonicParsing="false" onAction="#switchToContractor" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: #0099ff;" text="Contractor" textFill="WHITE" />
+                  <Button layoutX="10.0" layoutY="255.0" mnemonicParsing="false" onAction="#switchToInsurance" prefHeight="25.0" prefWidth="177.0" style="-fx-background-color: #0099ff;" text="Insurance" textFill="WHITE" />
+                  <Button layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#switchToUtility" prefHeight="25.0" prefWidth="161.0" style="-fx-background-color: #0099ff;" text="Utility" textFill="WHITE" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+   <bottom>
+      <AnchorPane prefHeight="0.0" prefWidth="627.0" style="-fx-background-color: #353745;" styleClass="bblue" BorderPane.alignment="CENTER">
+         <children>
+            <HBox layoutY="79.0" prefHeight="20.0" prefWidth="668.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="79.0" />
+         </children></AnchorPane>
+   </bottom>
+   <right>
+      <AnchorPane prefHeight="398.0" prefWidth="272.0" style="-fx-background-color: #353745;" styleClass="bblue" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="88.0" layoutY="1.0" prefHeight="26.0" prefWidth="97.0" styleClass="underln" text="News" textFill="WHITE" underline="true" />
+            <VBox layoutY="31.0" prefHeight="361.0" prefWidth="275.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="275.0" style="-fx-background-color: #6d597a;" styleClass="news" text="Property : No News" textFill="WHITE" />
+                  <Label layoutX="10.0" layoutY="10.0" prefHeight="26.0" prefWidth="275.0" style="-fx-background-color: #2a9d8f;" styleClass="news" text="Lease : No News" textFill="WHITE" />
+                  <Label layoutX="10.0" layoutY="46.0" prefHeight="26.0" prefWidth="275.0" style="-fx-background-color: b392ac;" styleClass="news" text="Tenant : No News" textFill="WHITE" />
+                  <Label layoutX="10.0" layoutY="82.0" prefHeight="26.0" prefWidth="275.0" style="-fx-background-color: #718355;" styleClass="news" text="Rent: No News" textFill="WHITE" />
+                  <Label layoutX="10.0" layoutY="118.0" prefHeight="26.0" prefWidth="275.0" style="-fx-background-color: #e5383b;" styleClass="news" text="Mortgage: No News" textFill="WHITE" />
+                  <Label layoutX="10.0" layoutY="154.0" prefHeight="26.0" prefWidth="275.0" style="-fx-background-color: #8a817c;" styleClass="news" text="Bank: No News" textFill="WHITE" />
+                  <Label layoutX="10.0" layoutY="190.0" prefHeight="26.0" prefWidth="275.0" style="-fx-background-color: #15616d;" styleClass="news" text="Repair: No News" textFill="WHITE" />
+                  <Label layoutX="10.0" layoutY="226.0" prefHeight="26.0" prefWidth="275.0" style="-fx-background-color: #892b64;" styleClass="news" text="Contractor: No News" textFill="WHITE" />
+                  <Label layoutX="10.0" layoutY="262.0" prefHeight="26.0" prefWidth="275.0" style="-fx-background-color: #ff6b35;" styleClass="news" text="Insurance: No News" textFill="WHITE" />
+                  <Label layoutX="10.0" layoutY="298.0" prefHeight="26.0" prefWidth="275.0" style="-fx-background-color: #4f6d7a;" styleClass="news" text="Utility: No News" textFill="WHITE" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </right>
+   <center>
+      <AnchorPane id="ctr" prefHeight="372.0" prefWidth="307.0" styleClass="bblue" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="905.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.PropertyController">
+   <top>
+      <AnchorPane prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: #6d597a;" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER_RIGHT" layoutX="820.0" layoutY="27.0" mnemonicParsing="false" onAction="#switchNext" style="-fx-background-color: #0099ff;" styleClass="next" text="Next" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="14.6666666666667">
+            </Button>
+            <Label alignment="CENTER_RIGHT" layoutX="534.0" layoutY="14.0" prefHeight="49.0" prefWidth="136.0" styleClass="title" text="Property" textAlignment="CENTER" textFill="WHITE">
+            </Label>
+            <Button layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToPrimary" style="-fx-background-color: #0099ff;" text="Back" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="446.0" prefWidth="413.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="228.0" text=" Address(street name &amp; unit number)" />
+            <TextField fx:id="address" layoutX="220.0" layoutY="21.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="Type" />
+            <TextField fx:id="type" layoutX="220.0" layoutY="59.0" prefHeight="25.0" prefWidth="164.0" />
+            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="173.0" text="Rent Amount" />
+            <TextField fx:id="rentAmount" layoutX="221.0" layoutY="102.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label layoutX="10.0" layoutY="145.0" prefHeight="30.0" prefWidth="173.0" text="School Tax" />
+            <TextField fx:id="schoolTax" layoutX="221.0" layoutY="147.0" prefHeight="25.0" prefWidth="164.0" />
+            <Label layoutX="11.0" layoutY="188.0" prefHeight="30.0" prefWidth="172.0" text="Property Tax" />
+            <TextField fx:id="propertyTax" layoutX="221.0" layoutY="190.0" prefHeight="25.0" prefWidth="164.0" />
+            <Label layoutX="11.0" layoutY="229.0" prefHeight="30.0" prefWidth="176.0" text="Vacant ( enter true or false)" />
+            <Label layoutX="11.0" layoutY="269.0" prefHeight="30.0" prefWidth="176.0" text="InsuranceId" />
+            <ComboBox fx:id="vacant" layoutX="222.0" layoutY="231.0" prefHeight="25.0" prefWidth="163.0" />
+            <ComboBox fx:id="insurance" layoutX="222.0" layoutY="273.0" prefHeight="27.0" prefWidth="163.0" promptText="Choose Insurance" />
+            <Label layoutX="9.0" layoutY="314.0" prefHeight="30.0" prefWidth="176.0" text="Number Of units" />
+            <TextField fx:id="numOfUnit" layoutX="222.0" layoutY="316.0" prefHeight="25.0" prefWidth="164.0" />
+            <Button fx:id="addProperty" layoutX="93.0" layoutY="364.0" mnemonicParsing="false" onAction="#addNewProperty" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
+
+            </Button>
+            <Button layoutX="206.0" layoutY="364.0" mnemonicParsing="false" onAction="#saveUpdates" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #eec591;" text="Save">
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <TableView fx:id="tableView" editable="true" prefHeight="446.0" prefWidth="307.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="75.0" resizable="false" text="propertyId" />
+          <TableColumn fx:id="addr" minWidth="0.0" prefWidth="51.333343505859375" text="address" />
+            <TableColumn fx:id="amount" minWidth="0.0" prefWidth="66.66668701171875" text="rent_amount" />
+            <TableColumn fx:id="propertyType" minWidth="0.0" prefWidth="67.3333740234375" text="type" />
+            <TableColumn fx:id="schoTax" prefWidth="67.3333740234375" text="school_tax" />
+            <TableColumn fx:id="propTax" prefWidth="54.00006103515625" text="property_tax" />
+            <TableColumn fx:id="insu" prefWidth="146.6666259765625" text="insurance" />
+            <TableColumn fx:id="propVacant" prefWidth="75.0" text="vacant" />
+            <TableColumn fx:id="pieces" prefWidth="75.0" text="rooms" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="94.0" prefWidth="905.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="98.0" fitWidth="205.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/property.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="311.0" layoutY="-2.0" prefHeight="107.0" prefWidth="204.0" text="Once a property is added, make sure to add/create other elements related to it such as mortgage , leases..etc" wrapText="true" />
+            <Button alignment="CENTER_RIGHT" layoutX="810.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchHome" style="-fx-background-color: #0099ff;" styleClass="next" text="Home Page" textAlignment="RIGHT" textFill="WHITE" />
+         </children></AnchorPane>
+   </bottom>
+   <right>
+      <AnchorPane prefHeight="446.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="60.0" layoutY="175.0" mnemonicParsing="false" onAction="#deleteProperty" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
+
+            </Button>
+            <Button layoutX="53.0" layoutY="73.0" mnemonicParsing="false" onAction="#updateProperty" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
+
+            </Button>
+            <Label layoutX="18.0" layoutY="14.0" prefHeight="42.0" prefWidth="129.0" text="Select property from table and click on edit" wrapText="true" />
+            <Label layoutX="20.0" layoutY="119.0" prefHeight="42.0" prefWidth="129.0" text="Select property from table and click on delete" wrapText="true" />
+            <Label layoutX="20.0" layoutY="236.0" prefHeight="42.0" prefWidth="129.0" text="Select property from table and click on view" wrapText="true" />
+            <Button layoutX="68.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchToView" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #aaf683;" text="View" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
