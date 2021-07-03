@@ -1,26 +1,45 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.realestate.model;
 
 /**
+ * This class represents Bank Object
  *
- * @author T450
+ * @author Yassine Ibhir
  */
 public class Bank {
+
+    private int bankId;
+    private String name;
+    private double intrestRate;
+    private String address;
+    private String phone;
 
     @Override
     public String toString() {
         return "Bank{" + "bankId=" + bankId + ", name=" + name + ", intrestRate=" + intrestRate + '}';
     }
-   private int bankId;
-   private String name;
-   private double intrestRate;
-   private String address;
-   private String phone;
 
+    /**
+     * @override equals method.
+     */
+    @Override
+    public boolean equals(Object obj) {
+
+        if (!(obj instanceof Bank) || this == null) {
+            return false;
+        }
+
+        return ((Bank) obj).bankId == this.bankId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 23 * hash + this.bankId;
+        return hash;
+    }
+    
+    // getters and setters
     public int getBankId() {
         return bankId;
     }

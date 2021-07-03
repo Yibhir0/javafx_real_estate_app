@@ -11,12 +11,12 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="1069.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.LeaseViewController">
   
     <left>
-      <AnchorPane prefHeight="316.0" prefWidth="294.0" styleClass="bgreen" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="323.0" prefWidth="339.0" styleClass="bgreen" BorderPane.alignment="CENTER">
          <children>
-            <GridPane layoutY="73.0" prefHeight="247.0" prefWidth="286.0">
+            <GridPane layoutY="75.0" prefHeight="245.0" prefWidth="320.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.33334350585938" minWidth="10.0" prefWidth="94.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="182.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="226.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="43.33332443237305" vgrow="SOMETIMES" />
@@ -28,17 +28,17 @@
                </rowConstraints>
                <children>
                   <Label prefHeight="35.0" prefWidth="91.0" text="Tenant Name:" />
-                  <Label layoutX="10.0" layoutY="10.0" prefHeight="37.0" prefWidth="233.0" text="Yassine Ibhir" wrapText="true" GridPane.columnIndex="1" />
+                  <Label fx:id="tenant" layoutX="10.0" layoutY="10.0" prefHeight="37.0" prefWidth="233.0" text="Yassine Ibhir" wrapText="true" GridPane.columnIndex="1" />
                   <Label prefHeight="32.0" prefWidth="89.0" text="Property add :" GridPane.rowIndex="1" />
-                  <Label prefHeight="37.0" prefWidth="240.0" text="4530 chemin........" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="address" prefHeight="37.0" prefWidth="240.0" text="4530 chemin........" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label prefHeight="31.0" prefWidth="86.0" text="Start Date: :" GridPane.rowIndex="2" />
-                  <Label prefHeight="41.0" prefWidth="240.0" text="4/15/2021" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="starDate" prefHeight="41.0" prefWidth="240.0" text="4/15/2021" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label prefHeight="33.0" prefWidth="83.0" text="End Date:" GridPane.rowIndex="3" />
-                  <Label prefHeight="45.0" prefWidth="240.0" text="4/15/2022" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="endDate" prefHeight="45.0" prefWidth="240.0" text="4/15/2022" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label prefHeight="42.0" prefWidth="103.0" text="Pdf File :" wrapText="true" GridPane.rowIndex="5" />
-                  <Label prefHeight="47.0" prefWidth="240.0" text="No" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="renewal" prefHeight="47.0" prefWidth="240.0" text="No" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label prefHeight="44.0" prefWidth="106.0" text="Renewal:" wrapText="true" GridPane.rowIndex="4" />
-                  <Label prefHeight="35.0" prefWidth="240.0" text="yassine_ibhir_2021.pdf" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="pdfFile" prefHeight="35.0" prefWidth="240.0" text="yassine_ibhir_2021.pdf" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <Label alignment="CENTER" layoutX="104.0" layoutY="17.0" prefHeight="35.0" prefWidth="68.0" style="-fx-background-color: #6d597a;" styleClass="news" text="Details" textFill="WHITE" wrapText="true" />
@@ -48,7 +48,7 @@
    <center>
       <AnchorPane prefHeight="333.0" prefWidth="664.0" BorderPane.alignment="CENTER">
          <children>
-            <ListView layoutX="346.0" layoutY="64.0" prefHeight="255.0" prefWidth="647.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0" />
+            <ListView fx:id="rents" layoutX="346.0" layoutY="64.0" prefHeight="255.0" prefWidth="647.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0" />
             <Label alignment="CENTER" layoutX="288.0" layoutY="21.0" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #718355;" styleClass="news" text="Rent Status" textFill="WHITE" />
          </children>
       </AnchorPane>

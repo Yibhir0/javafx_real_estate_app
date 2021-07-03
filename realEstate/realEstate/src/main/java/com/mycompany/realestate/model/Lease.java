@@ -1,15 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.realestate.model;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- *
- * @author T450
+ * This class represents Lease object
+ * @author Yassine Ibhir
  */
 public class Lease {
 
@@ -20,9 +23,17 @@ public class Lease {
    private int leaseId;
    private int term;
    private LocalDate startDate;
+   private LocalDate endDate;
    private boolean renewal;
    private Property property;
    private Tenant tenant;
+   private String leaseFileName;
+   private File pdfFile;
+   private List<Rent> rents = new ArrayList<>();
+   
+   // the directory to store the uploaded leases
+   private final static String outDir = "H:\\leases\\";
+    
 
     public int getLeaseId() {
         return leaseId;
@@ -71,5 +82,86 @@ public class Lease {
     public void setTenant(Tenant tenant) {
         this.tenant = tenant;
     }
+
+    public String getLeaseFileName() {
+        return leaseFileName;
+    }
+
+    public void setLeaseFileName(String leaseFileName) {
+        this.leaseFileName = leaseFileName;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+    
+    public void setEndDate(){ 
+        this.endDate = this.startDate.plusMonths(this.term);
+    }
+
+    public List<Rent> getRents() {
+        return rents;
+    }
+
+    public void setRents(List<Rent> rents) {
+        this.rents = rents;
+    }
+    
+    public void addRent(Rent rent){
+        
+        this.rents.add(rent);
+        
+    }
+    
+     public void removeRent(Rent rent){
+        
+        this.rents.remove(rent);
+        
+    }
+    
+   /**
+    * Update old lease with new lease
+    * @param leaseNewUpdate 
+    */
+    public void updateLease(Lease leaseNewUpdate) {
+      
+        this.leaseId = leaseNewUpdate.leaseId;
+        this.term = leaseNewUpdate.term;
+        this.endDate = leaseNewUpdate.endDate;
+        this.startDate =leaseNewUpdate.startDate;
+        this.renewal = leaseNewUpdate.renewal;
+        this.tenant = leaseNewUpdate.tenant;
+        this.property= leaseNewUpdate.property;
+        this.leaseFileName = leaseNewUpdate.leaseFileName;
+        this.rents = leaseNewUpdate.rents;
+        this.pdfFile = leaseNewUpdate.pdfFile;
+    }
+    
+    
+    public File getPdfFile() {
+        return pdfFile;
+    }
+
+    public void setPdfFile(File pdfFile) {
+        this.pdfFile = pdfFile;
+    }
+    /**
+     * moving file to lease directory
+     * @throws IOException 
+     */
+    public void copyToLeaseDirectory() throws IOException{
+        Path source = this.pdfFile.toPath();
+        File newPdf = new File(outDir + this.getLeaseFileName());
+        Path des = newPdf.toPath() ;
+        Files.copy(source,des,StandardCopyOption.REPLACE_EXISTING);
+
+    }
+    
+    
+    
    
 }

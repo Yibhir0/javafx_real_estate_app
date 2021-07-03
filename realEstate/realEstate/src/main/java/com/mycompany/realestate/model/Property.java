@@ -10,19 +10,23 @@ import java.util.List;
  *  
  * @author Yassine Ibhir
  */
-public class Property {
+public  class Property {
+    
     
     // unique id 
     private int propertyId;
     
     // number of units
-    private int unitNum;
+    private int numberRooms;
     
     // type of property (condo,house etc..)
     private String propertyType;
     
     // address of the property
     private String address;
+    
+    // apartment number (optional)
+    private int apartmentNumber;
     
     // the annual school tax amount
     private double schoolTax;
@@ -50,8 +54,13 @@ public class Property {
     
     // list of all repairs
     private List<Repair> repairs = new ArrayList<Repair>();
-
+    
+    // plexProperty is a reference used in plex properties; 
+    private Property plexProperty ;
+   
+    
     // getters
+    
     public int getPropertyId() {
         return propertyId;
     }
@@ -91,6 +100,14 @@ public class Property {
     public List<Lease> getLeases() {
         return leases;
     }
+    
+    public int getApartmentNumber() {
+        return apartmentNumber;
+    }
+
+    public void setApartmentNumber(int apartmentNumber) {
+        this.apartmentNumber = apartmentNumber;
+    }
 
     public List<Utility> getUtilities() {
         return utilities;
@@ -99,14 +116,14 @@ public class Property {
     public List<Repair> getRepairs() {
         return repairs;
     }
-    public int getUnitNum() {
-        return unitNum;
+    public int getNumberRooms() {
+        return numberRooms;
     }
 
     // setters
     
-    public void setUnitNum(int unitNum) {
-        this.unitNum = unitNum;
+    public void setNumberRooms(int unitNum) {
+        this.numberRooms = unitNum;
     }
    
     
@@ -157,6 +174,13 @@ public class Property {
     public void setRepairs(List<Repair> repairs) {
         this.repairs = repairs;
     }
+    public Property getPlexProperty() {
+        return plexProperty;
+    }
+
+    public void setPlexProperty(Property plexProperty) {
+        this.plexProperty = plexProperty;
+    }
     
     // the below methods add item to the corresponding list
     public void addMortgage(Mortgage mortgage){
@@ -164,7 +188,7 @@ public class Property {
     }
     
     public void addLease(Lease lease){
-        leases.add(lease);
+        leases.add(0,lease);
     }
     
     public void addRepair(Repair repair){
@@ -192,17 +216,29 @@ public class Property {
         utilities.remove(utility);
     }
     
-    public void backUpCopy(Property backUp){
-        this.propertyId = backUp.propertyId;
-        this.address = backUp.address;
-        this.insurance = backUp.insurance;
-        this.isVacant = backUp.isVacant;
-        this.rentAmount = backUp.rentAmount;
-        this.unitNum = backUp.unitNum;
-        this.schoolTax = backUp.schoolTax;
-        this.propertyTax = backUp.propertyTax;
-        this.propertyType = backUp.propertyType;
+    /**
+     * update property Mortgage
+     * @param oldMortgage
+     * @param newMortgage 
+     */
+    public void updateMortage(Mortgage oldMortgage,Mortgage newMortgage){
         
+        int index = this.getMortgages().indexOf(oldMortgage);
+        
+        this.getMortgages().set(index,newMortgage);
+    }
+    
+    /**
+     * 
+     * @return the current lease
+     */
+    public Lease getCurrentLease(){
+     int size = this.leases.size();
+     if (size == 0){
+         return null;
+     }
+     Lease lease = this.leases.get(0);
+     return lease;
     }
    
     /**
@@ -211,9 +247,54 @@ public class Property {
      */
     @Override
     public String toString() {
-        return "Property{Id="+ propertyId + ", Address=" + address + '}';
+        if (this instanceof House || this instanceof Plex){
+            return " Id="+ propertyId + ", Address=" + address + '}';
+        }
+        if (this instanceof Condo){
+            return " Id="+ propertyId + ", Address=" + address +", App#=" + apartmentNumber + '}';
+        }
+        return "Plex Unit{ Id="+ propertyId + ", Address=" + this.plexProperty.getAddress() +", App#=" + apartmentNumber + '}';
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + this.propertyId;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Property other = (Property) obj;
+        if (this.propertyId != other.propertyId) {
+            return false;
+        }
+        return true;
+    }
     
-    
+     // backUp copy af property attributes
+    public void updateExistentProperty(Property backUp){
+        if (backUp instanceof Condo){
+            ((Condo)this).setCondoFees(((Condo)backUp).getCondoFees());
+        }
+        this.address = backUp.address;
+        this.insurance = backUp.insurance;
+        this.isVacant = backUp.isVacant;
+        this.rentAmount = backUp.rentAmount;
+        this.numberRooms = backUp.numberRooms;
+        this.schoolTax = backUp.schoolTax;
+        this.propertyTax = backUp.propertyTax;
+        this.propertyType = backUp.propertyType;
+        this.apartmentNumber = backUp.apartmentNumber;
+    }
+
 }

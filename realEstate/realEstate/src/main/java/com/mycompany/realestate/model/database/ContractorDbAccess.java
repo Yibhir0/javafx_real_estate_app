@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.realestate.model.database;
 
 import com.mycompany.realestate.model.Contractor;
-import com.mycompany.realestate.model.Insurance;
-import com.mycompany.realestate.model.Property;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author T450
+ * @author Yassine Ibhir
  */
 public class ContractorDbAccess {
     
@@ -48,14 +42,14 @@ public class ContractorDbAccess {
                 contractors.add(cont);  
             }
          } catch (SQLException ex) {
-              Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(ContractorDbAccess.class.getName()).log(Level.SEVERE, null, ex);
           }    
 	
         return contractors;
     }
     
     /**
-    * method gets gets and creates Contractor
+    * method gets and creates Contractor
     * @param id primaryKey
     * @return Contractor
     */
@@ -81,9 +75,143 @@ public class ContractorDbAccess {
             }
         }
         catch (SQLException ex) {
-              Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(ContractorDbAccess.class.getName()).log(Level.SEVERE, null, ex);
           }      
           return c;
-      }
+     }
+    
+    /**
+     * add Contractor to database
+     * @param contractor
+     * @return number of rows affected
+     */
+    public int addContractor(Contractor contractor) {
+        int row = 0;
+        int contractor_id = getPriamryKey();  
+        String query = " insert into contractor  values (?, ?, ?, ?, ?)";  
+        if(contractor_id > -1){
+            Connection con = DataBaseConnection.getConnection();
+            contractor.setContractorId(contractor_id);
+            PreparedStatement ps;
+        
+            try { 
+                ps = con.prepareStatement(query);
+                ps.setInt(1,contractor_id);
+                ps.setString(2,contractor.getName());
+                ps.setString(3,contractor.getSpecialization());
+                ps.setString(4,contractor.getAddress());
+                ps.setString(5,contractor.getPhone());
+
+                row = ps.executeUpdate();
+
+             } catch (SQLException ex) {
+                  Logger.getLogger(ContractorDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            finally{
+                try {
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ContractorDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } 
+            
+        }
+        return row;
+    }
+    
+    /**
+     * generate primary key for new bank
+     * @return 
+     */
+    private int getPriamryKey() {
+        int primaryKey = -1;
+        
+        String query = " select max(contractor_id) + 1 from contractor;";
+        Connection con = DataBaseConnection.getConnection();
+   
+        try {
+             PreparedStatement ps = con.prepareStatement(query);
+             ResultSet rs = ps.executeQuery();
+             if (rs.next()){
+                primaryKey = rs.getInt(1);
+             }
+        } catch (SQLException ex) {
+              Logger.getLogger(ContractorDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ContractorDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
+      
+        return primaryKey;
+    }
+    
+    /**
+     * update Contractor information in database 
+     * @param  contractor
+     * @return number of rows updated
+     */
+    public int updateContractor(Contractor contractor) {
+
+
+        String query = " update contractor set address = ?,name = ?,"
+                + "specialization = ?,phone = ? where contractor_id = ?;";  
+        int row = 0;
+        Connection con = DataBaseConnection.getConnection();
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(query);
+            ps.setString(1,contractor.getAddress());
+            ps.setString(2,contractor.getName());
+            ps.setString(3,contractor.getSpecialization());
+            ps.setString(4,contractor.getPhone());
+            ps.setInt(5,contractor.getContractorId());
+         
+            row = ps.executeUpdate();
+            System.out.println("upadated-------> " +row);
+        } catch (SQLException ex) {
+              Logger.getLogger(ContractorDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ContractorDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
+        return row;  
+    }
+    
+     /**
+     * delete Contractor from database
+     * @param contractor
+     * @return row affected
+     */
+    public int deleteContractor(Contractor contractor){
+        Connection con = DataBaseConnection.getConnection();
+        String query = " delete from contractor where contractor_id = ?";  
+        int row = 0;
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1,contractor.getContractorId());
+            row = ps.executeUpdate();
+          } catch (SQLException ex) {
+              Logger.getLogger(ContractorDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ContractorDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
+       
+        return row;
+        
+    }
     
 }

@@ -1,27 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.realestate.model;
 
 import java.time.LocalDate;
 
 /**
- *
- * @author T450
+ * This class represents the Utility object
+ * @author Yassine Ibhir
  */
 public class Utility {
 
     @Override
     public String toString() {
-        return "Utility{" + "utilityId=" + utilityId + ", amount=" + amount + '}';
+        return "Utility{" + "utilityId=" + utilityId + ", amount=" + amount + ", Payment Date = "+ paymentDate + '}';
     }
     private int utilityId;
     private double amount;
     private LocalDate paymentDate;
     private Property property;
-
+    
+    // getters and setters
     public int getUtilityId() {
         return utilityId;
     }
@@ -52,5 +49,16 @@ public class Utility {
 
     public void setProperty(Property property) {
         this.property = property;
+    }
+    
+    /**
+     * update existent utility
+     * @param utilityUpdated 
+    */
+    public void updateUtility(Utility utilityUpdated) {
+        this.utilityId = utilityUpdated.utilityId;
+        this.property = utilityUpdated.property;
+        this.paymentDate = utilityUpdated.paymentDate;
+        this.amount = utilityUpdated.amount;
     }
 }

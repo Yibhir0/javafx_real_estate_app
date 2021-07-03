@@ -1,4 +1,3 @@
--- Yaasine Ibhir
 
 -- insert random data into insurance table
 insert into insurance values(1,'posix',1000,'5430 rue laval montreal','514,6795174');
@@ -7,27 +6,55 @@ insert into insurance values(3,'posix',1000,'5430 rue laval montreal','514,67951
 insert into insurance values(4,'hoxaw',5000,'54333 rue laval montreal','514,6795174');
 insert into insurance values(5,'EXPENSIVE',10000,'54333 rue laval montreal','514,6795174');
 
+
 -- insert random data in property table
-    
 insert into property 
-values(1,'5430 rue property montreal','plex',
-1000.80,2000,900,'true',1,4);
+values(1,'5430 rue property montreal','Plex',
+null,2000,900,'true',1,null,null,4,null,null);
+
+INSERT INTO property (property_id, rent_amount, vacant, rooms,appartment_number,plex_id)
+VALUES (6, 600, 'true',2,100,1); 
+INSERT INTO property (property_id, rent_amount, vacant, rooms,appartment_number,plex_id)
+VALUES (7, 600, 'true',2,101,1);
+INSERT INTO property (property_id, rent_amount, vacant, rooms,appartment_number,plex_id)
+VALUES (8, 600, 'true',2,102,1); 
+INSERT INTO property (property_id, rent_amount, vacant, rooms,appartment_number,plex_id)
+VALUES (9, 600, 'true',2,103,1);
+
+select * from property ;
+
 
 insert into property 
-values(2,'5430 rue property montreal','plex',
-1000.80,2000,900,'true',2,5);
+values(2,'5430 rue property montreal','Condo',
+1000.80,2000,900,'true',2,5,76.9,null,345,null);
 
 insert into property 
-values(3,'00000 rue property montreal','plex',
-1000.80,2000,900,'true',1,4);
+values(3,'00000 rue property montreal','House',
+1000.80,2000,900,'true',1,4,null,null,null,null);
 
 insert into property 
-values(4,'2299 rue property montreal','plex',
-1000.80,2000,900,'true',1,4);
+values(4,'2299 rue property montreal','Plex',
+null,2000,900,'true',1,null,null,4,null,null);
+select * from property;
+delete from property where property_id = 14;
+
+INSERT INTO property (property_id, rent_amount, vacant, rooms,appartment_number,plex_id)
+VALUES (10, 800, 'true',2,100,4); 
+INSERT INTO property (property_id, rent_amount, vacant, rooms,appartment_number,plex_id)
+VALUES (11, 800, 'true',2,101,4);
+INSERT INTO property (property_id, rent_amount, vacant, rooms,appartment_number,plex_id)
+VALUES (12, 800, 'true',2,102,4); 
+INSERT INTO property (property_id, rent_amount, vacant, rooms,appartment_number,plex_id)
+VALUES (13, 800, 'true',2,103,4);
 
 insert into property 
-values(5,'1111 rue property montreal','plex',
-1000.80,2000,900,'true',1,4);
+values(5,'1111 rue property montreal','House',
+1000.80,2000,900,'true',1,4,null,null,null,null);
+
+-- insert random data into plex_property table
+-- insert into plex_property values(1,3,4,'false',1);
+-- insert into plex_property values(2,5,3,'false',4);
+-- insert into plex_property values(2,5,2,'false',5);
 
 
 -- insert  random data into contractor table
@@ -103,35 +130,40 @@ insert into tenant
         
 -- sample lease
  insert into lease
-		values(1,12,'21/04/20','false',1,5); 
+		values(1,12,'21/04/20','21/04/20','false','2021_customerName.pdf',1,5); 
     insert into lease
-		values(2,12,'21/04/21','false',2,4);
+		values(2,12,'21/04/20','21/04/20','false','2021_customerName.pdf',2,4);
     insert into lease
-		values(3,12,'21/04/20','false',3,2);
+		values(3,12,'21/04/20','21/04/20','false','2021_customerName.pdf',3,2);
     insert into lease
-		values(4,6,'21/04/20','false',4,3);
+		values(4,6,'21/04/20','21/04/20','false','2021_customerName.pdf',4,3);
 	insert into lease
-		values(5,12,'21/04/20','false',5,1); 
+		values(5,12,'21/04/20','21/04/20','false','2021_customerName.pdf',5,1);
+        
+    insert into lease
+		values(6,12,'18/04/20','18/04/20','false','2021_customerName.pdf',5,1);    
+	insert into lease
+		values(7,12,'20/04/20','20/04/20','false','2021_customerName.pdf',5,1);  
 
 -- sample rent
 insert into rent
-		values(1,800,'cash','21/04/20','true',1);
+		values(1,800,'Cash','21/04/20','true',1);
 insert into rent
-		values(2,500,'cash','21/04/20','false',2);
+		values(2,500,'Credit','21/04/20','false',2);
 insert into rent
-		values(3,800,'cash','21/04/20','true',3);
+		values(3,800,'Debit','21/04/20','true',3);
 insert into rent
-		values(4,200,'credit card','21/04/20','false',4);
+		values(4,200,'Cheque','21/04/20','false',4);
 insert into rent
-		values(5,1000,'cash','21/04/20','true',5);
+		values(5,1000,'Cash','21/04/20','true',5);
  
- --  select * from rent;
---  select * from lease;
---   select * from tenant;
---   select * from mortgage;
---  select * from repairs;
+  -- select * from rent;
+--  select * from lease where property_id = 5 order by end_date DESC  ;
+-- select * from tenant;
+--  select * from mortgage;
+-- select * from repairs;
 --  select * from insurance;
---   select * from contractor;
+-- select * from contractor;
 --  select * from utility;
---  select * from property;
---  select * from bank;
+-- select * from property;
+-- select * from bank;

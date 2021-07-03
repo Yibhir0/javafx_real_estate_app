@@ -9,11 +9,11 @@ and open the template in the editor.
 */
 
 /*.root{ 
-    -fx-border-color: #0099ff;
+    -fx-border-color: gray; 
+    #0099ff
 }*/
 #ctr{
-    -fx-background-image: url("../images/center.jpg");
-    -fx-background-repeat: no-repeat;
+    -fx-border-color: gray; 
 }
 .title{
     -fx-font: italic  bold 20pt Tahoma;
@@ -24,6 +24,9 @@ and open the template in the editor.
 Button{
     -fx-font: italic bold 10pt sans-serif;
     -fx-cursor: hand;
+}
+Label{
+    -fx-font: italic  bold 9pt Tahoma;
 }
 VBox {
     -fx-spacing: 10;
@@ -39,6 +42,11 @@ VBox {
 
 views {
     -fx-font: italic bold 8pt sans-serif;
+}
+
+Tab{
+    
+    -fx-border-color: #0099ff;
 }
 
 .bblue {

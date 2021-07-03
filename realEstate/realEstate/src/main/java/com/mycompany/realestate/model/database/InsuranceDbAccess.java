@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.realestate.model.database;
 
-import com.mycompany.realestate.model.Company;
+
 import com.mycompany.realestate.model.Insurance;
-import com.mycompany.realestate.model.Property;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author T450
+ * @author Yassine Ibhir
  */
 public class InsuranceDbAccess {
 
@@ -48,7 +43,14 @@ public class InsuranceDbAccess {
             }
          } catch (SQLException ex) {
               Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
-          }    
+        }
+        finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }  
 	
         return insurances;
     }
@@ -78,10 +80,16 @@ public class InsuranceDbAccess {
                 insu.setAddress(rs.getString("address"));
                 insu.setPhone(rs.getString("phone")); 
             }
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
               Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
-          }      
+        }
+        finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
           return insu;
       }
     /***
@@ -95,6 +103,7 @@ public class InsuranceDbAccess {
         String query = " insert into insurance  values (?, ?, ?, ?, ?)";  
         if(insurance_id > -1){
             Connection con = DataBaseConnection.getConnection();
+            ins.setInsuranceId(insurance_id);
             PreparedStatement ps;
         
         try { 
@@ -109,13 +118,13 @@ public class InsuranceDbAccess {
             row = ps.executeUpdate();
             
         } catch (SQLException ex) {
-              Logger.getLogger(PropertyDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally{
             try {
                 con.close();
             } catch (SQLException ex) {
-                Logger.getLogger(PropertyDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
             
@@ -139,14 +148,14 @@ public class InsuranceDbAccess {
              if (rs.next()){
                 primaryKey = rs.getInt(1);
              }
-        } catch (SQLException ex) {
-            Logger.getLogger(PropertyDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (SQLException ex) {
+              Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally{
             try {
                 con.close();
             } catch (SQLException ex) {
-                Logger.getLogger(PropertyDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
       
@@ -160,32 +169,61 @@ public class InsuranceDbAccess {
      */
     public int update(Insurance ins) {
 
-        String query = " update insurance set address = ?,insurance_id = ?,name = ?,"
-                + "annual_payment = ?,phone = ?;";  
+        String query = " update insurance set address = ?,name = ?,"
+                + "annual_payment = ?,phone = ? where insurance_id = ?;";  
         int row = 0;
         Connection con = DataBaseConnection.getConnection();
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(query);
             ps.setString(1,ins.getAddress());
-            ps.setInt(2,ins.getInsuranceId());
-            ps.setString(3,ins.getName());
-            ps.setDouble(4,ins.getAnnualPayment());
-            ps.setString(5,ins.getPhone());
+            ps.setString(2,ins.getName());
+            ps.setDouble(3,ins.getAnnualPayment());
+            ps.setString(4,ins.getPhone());
+            ps.setInt(5,ins.getInsuranceId());
          
             row = ps.executeUpdate();
             System.out.println("upadated-------> " +row);
-        } catch (SQLException ex) {
-              Logger.getLogger(PropertyDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (SQLException ex) {
+              Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally{
             try {
                 con.close();
             } catch (SQLException ex) {
-                Logger.getLogger(PropertyDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
             }
         } 
         return row;  
+    }
+    
+     /**
+     * delete Insurance from database
+     * @param insurance
+     * @return row affected
+     */
+    public int deleteInsurance(Insurance insurance){
+        Connection con = DataBaseConnection.getConnection();
+        String query = " delete from insurance where insurance_id = ?";  
+        int row = 0;
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(query);
+            ps.setInt(1,insurance.getInsuranceId());
+            row = ps.executeUpdate();
+          } catch (SQLException ex) {
+              Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(InsuranceDbAccess.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
+       
+        return row;
+        
     }
     
 }

@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="1031.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.MortgageController">
    <top>
       <AnchorPane prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: #e5383b;" BorderPane.alignment="CENTER">
@@ -19,39 +27,39 @@
    <left>
       <AnchorPane prefHeight="508.0" prefWidth="484.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="228.0" text="propertyId" />
-            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="BankId" />
-            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="189.0" text="Mortgage Term (number of years)" />
+            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="228.0" text="Property:" />
+            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="Bank:" />
+            <ComboBox fx:id="propertyId" layoutX="267.0" layoutY="21.0" prefHeight="25.0" prefWidth="169.0" promptText="Choose Property" />
+            <ComboBox fx:id="bankId" layoutX="268.0" layoutY="59.0" prefHeight="25.0" prefWidth="167.0" promptText="Choose Bank" />
+            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="224.0" text="Mortgage Term (# of years) :" />
             <TextField fx:id="term" layoutX="267.0" layoutY="103.0" prefHeight="25.0" prefWidth="166.0" />
-            <Label layoutX="10.0" layoutY="145.0" prefHeight="30.0" prefWidth="173.0" text="Mortgage Amount" />
+            <Label layoutX="10.0" layoutY="145.0" prefHeight="30.0" prefWidth="173.0" text="Mortgage Amount :" />
             <TextField fx:id="mortgageAmount" layoutX="267.0" layoutY="148.0" prefHeight="25.0" prefWidth="167.0" />
-            <Label layoutX="11.0" layoutY="188.0" prefHeight="30.0" prefWidth="172.0" text="Down Payment" />
-            <Label layoutX="11.0" layoutY="229.0" prefHeight="30.0" prefWidth="176.0" text="Start Date" />
+            <Label layoutX="11.0" layoutY="188.0" prefHeight="30.0" prefWidth="172.0" text="Down Payment :" />
+            <Label layoutX="11.0" layoutY="229.0" prefHeight="30.0" prefWidth="176.0" text="Start Date :" />
             <TextField fx:id="downPay" layoutX="268.0" layoutY="191.0" prefHeight="25.0" prefWidth="166.0" />
-            <Button layoutX="99.0" layoutY="346.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
+            <Label layoutX="9.0" layoutY="276.0" prefHeight="30.0" prefWidth="226.0" text="Fully paid(true(yes) or false(no)) :" />
+            <DatePicker fx:id="startDate" layoutX="268.0" layoutY="232.0" prefHeight="25.0" prefWidth="167.0" />
+            <Button fx:id="save" disable="true" layoutX="286.0" layoutY="346.0" mnemonicParsing="false" onAction="#saveUpdatedMortgage" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #eec591;" text="Save">
+            </Button>
+            <Button fx:id="add" layoutX="99.0" layoutY="346.0" mnemonicParsing="false" onAction="#addNewMortgage" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
 
             </Button>
-            <Button layoutX="286.0" layoutY="346.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #eec591;" text="Save">
-            </Button>
-            <ComboBox fx:id="propertyId" layoutX="267.0" layoutY="22.0" prefHeight="25.0" prefWidth="169.0" promptText="Choose PropertyId" />
-            <ComboBox fx:id="bankId" layoutX="268.0" layoutY="60.0" prefHeight="25.0" prefWidth="167.0" promptText="Choose BankId" />
-            <Label layoutX="9.0" layoutY="276.0" prefHeight="30.0" prefWidth="176.0" text="Fully paid( enter yes or no)" />
-            <TextField fx:id="isPaid" layoutX="269.0" layoutY="278.0" prefHeight="25.0" prefWidth="166.0" />
-            <DatePicker fx:id="startDate" layoutX="268.0" layoutY="232.0" prefHeight="25.0" prefWidth="167.0" />
+            <ComboBox fx:id="isPaid" layoutX="268.0" layoutY="278.0" prefHeight="25.0" prefWidth="170.0" />
          </children>
       </AnchorPane>
    </left>
    <center>
-      <TableView editable="true" prefHeight="503.0" prefWidth="549.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" editable="true" prefHeight="503.0" prefWidth="549.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" resizable="false" text="mortgageId" />
-          <TableColumn minWidth="0.0" prefWidth="141.0" text="propertyId" />
-            <TableColumn minWidth="0.0" prefWidth="84.66670227050781" text="term" />
-            <TableColumn minWidth="0.0" prefWidth="46.0" text="bankId" />
-            <TableColumn minWidth="4.0" prefWidth="54.66668701171875" text="startDate" />
-            <TableColumn prefWidth="77.33331298828125" text="amount" />
-            <TableColumn prefWidth="49.333282470703125" text="downPayment" />
-            <TableColumn prefWidth="75.0" text="fullyPaid" />
+          <TableColumn fx:id="id" prefWidth="75.0" resizable="false" text="mortgageId" />
+          <TableColumn fx:id="pid" minWidth="0.0" prefWidth="141.0" text="property" />
+            <TableColumn fx:id="mterm" minWidth="0.0" prefWidth="84.66670227050781" text="term" />
+            <TableColumn fx:id="bid" minWidth="0.0" prefWidth="46.0" text="bank" />
+            <TableColumn fx:id="sdate" minWidth="4.0" prefWidth="54.66668701171875" text="startDate" />
+            <TableColumn fx:id="mamount" prefWidth="77.33331298828125" text="amount" />
+            <TableColumn fx:id="dpay" prefWidth="49.333282470703125" text="downPayment" />
+            <TableColumn fx:id="paid" prefWidth="75.0" text="fullyPaid" />
         </columns>
       </TableView>
    </center>
@@ -69,16 +77,16 @@
     <right>
       <AnchorPane prefHeight="446.0" prefWidth="170.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="60.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
+            <Button fx:id="delete" disable="true" layoutX="60.0" layoutY="175.0" mnemonicParsing="false" onAction="#deleteMortgage" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
 
             </Button>
-            <Button layoutX="53.0" layoutY="73.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
+            <Button fx:id="edit" disable="true" layoutX="53.0" layoutY="73.0" mnemonicParsing="false" onAction="#modifyMortgage" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
 
             </Button>
-            <Label layoutX="18.0" layoutY="14.0" prefHeight="42.0" prefWidth="129.0" text="Select mortgage from table and click on edit" wrapText="true" />
-            <Label layoutX="20.0" layoutY="119.0" prefHeight="42.0" prefWidth="129.0" text="Select mortgage from table and click on delete" wrapText="true" />
-            <Label layoutX="20.0" layoutY="236.0" prefHeight="42.0" prefWidth="129.0" text="Select mortgage from table and click on view" wrapText="true" />
-            <Button layoutX="68.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchToView" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #aaf683;" text="View" />
+            <Label layoutX="18.0" layoutY="14.0" prefHeight="55.0" prefWidth="129.0" text="Select mortgage from table and click on edit" wrapText="true" />
+            <Label layoutX="20.0" layoutY="105.0" prefHeight="56.0" prefWidth="129.0" text="Select mortgage from table and click on delete" wrapText="true" />
+            <Label layoutX="20.0" layoutY="211.0" prefHeight="67.0" prefWidth="129.0" text="Select mortgage from table and click on view" wrapText="true" />
+            <Button fx:id="view" disable="true" layoutX="68.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchToView" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #aaf683;" text="View" />
          </children>
       </AnchorPane>
    </right>

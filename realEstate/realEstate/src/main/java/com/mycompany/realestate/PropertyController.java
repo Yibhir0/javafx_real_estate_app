@@ -6,49 +6,59 @@
 package com.mycompany.realestate;
 
 import com.mycompany.realestate.model.Company;
+import com.mycompany.realestate.model.Condo;
+import com.mycompany.realestate.model.House;
 import com.mycompany.realestate.model.Insurance;
+import com.mycompany.realestate.model.Plex;
 import com.mycompany.realestate.model.Property;
-import com.mycompany.realestate.model.database.InsuranceDbAccess;
-import com.mycompany.realestate.model.database.PropertyDbAccess;
+import com.mycompany.realestate.model.database.*;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
-import static javafx.collections.FXCollections.observableList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.stage.Stage;
 
 /**
+ * Property Controller
  *
- * @author T450
+ * @author Yassine Ibhir
  */
 public class PropertyController implements Initializable {
-    
+
     // We will create a property object with these fxml instances
     @FXML
     private TextField address;
 
     @FXML
-    private TextField type;
+    private TextField appartment;
+
+    @FXML
+    private Label changeText;
+
+    @FXML
+    private TextField oddAttribute;
+
+    @FXML
+    private ComboBox<String> type;
 
     @FXML
     private TextField rentAmount;
@@ -57,23 +67,41 @@ public class PropertyController implements Initializable {
     private TextField schoolTax;
 
     @FXML
-    private ComboBox vacant = new ComboBox();
+    private ComboBox<Boolean> vacant = new ComboBox();
 
     @FXML
     private TextField propertyTax;
-    
+
     @FXML
-    private ComboBox insurance = new ComboBox();
-    
+    private ComboBox<Insurance> insurance = new ComboBox();
+
     @FXML
-    private TextField numOfUnit;
-    
-    private PropertyDbAccess propertyDbAccess = new PropertyDbAccess();
-     
-  
-     
-    //configure the table
-     
+    private TextField numOfRooms;
+
+    // db access instances
+    private HouseDbAccess houseDbAccess = new HouseDbAccess();
+
+    private PlexDbAccess plexDbAccess = new PlexDbAccess();
+
+    private CondoDbAccess condoDbAccess = new CondoDbAccess();
+
+    // buttons
+    @FXML
+    private Button delete;
+
+    @FXML
+    private Button edit;
+
+    @FXML
+    private Button view;
+
+    @FXML
+    private Button addProperty;
+
+    @FXML
+    private Button save;
+
+    // properties table 
     @FXML
     private TableView<Property> tableView;
     @FXML
@@ -99,21 +127,110 @@ public class PropertyController implements Initializable {
 
     @FXML
     private TableColumn<Property, String> propVacant;
-    
+
     @FXML
     private TableColumn<Property, Integer> pieces;
-     
+
+    // insurance database access
     private InsuranceDbAccess insuranceDbAccess = new InsuranceDbAccess();
-    
-    private  Property backUp = new Property();
-    
+
+    // selected property of the table. 
+    private Property propertyToUpdate;
+
     private ObservableList<Property> properties;
-    
-    
-     @Override
+
+    // plex properties table
+    @FXML
+    private TableView<Property> tableView2;
+
+    @FXML
+    private TableColumn<Property, Integer> unit_id;
+
+    @FXML
+    private TableColumn<Property, Integer> appartment_num;
+
+    @FXML
+    private TableColumn<Property, Double> t2_rent;
+
+    @FXML
+    private TableColumn<Property, Boolean> t2_vacant;
+
+    @FXML
+    private TableColumn<Property, Plex> plex_id;
+
+    @FXML
+    private TableColumn<Property, Integer> unitRooms;
+
+    // plex properties buttons
+    @FXML
+    private Button editPproperty;
+
+    @FXML
+    private Button viewPproperty;
+
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        //set up the columns in the table
+//        clearFields();
+        //set up the columns in the table 1 (properties)
+        setUpTableColumns();
+        //set up the columns in the table 2(plex properties)
+        setUpTable2Columns();
+        // put the property values in table View
+        fillUpTable();
+        //set up the value of comboBox (vacant)
+        setVacantComboBox();
+        // set uo the values of comboxBox(propertyType)
+        setTypeComboBox();
+        // set up the values of comboBox (insurance)
+        setInsuranceComboBox();
+        // property table view listner
+        tableListener();
+
+        // plex property table view listner
+        tableListener2();
+        // changes text
+        comboBoxListener();
+    }
+
+    /**
+     * listens for table selected row event and enable edit and view buttons for
+     * plex property table
+     */
+    private void tableListener2() {
+        tableView2.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+
+            editPproperty.setDisable(false);
+            viewPproperty.setDisable(false);
+
+        });
+    }
+
+    /**
+     * listens for table selected row event and disable the unused buttons
+     * checks if the selected row is a plex to show all of its properties in the
+     * plex property table.
+     */
+    private void tableListener() {
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection instanceof Plex) {
+                fillUpTable2(newSelection);
+            }
+            edit.setDisable(false);
+            delete.setDisable(false);
+            view.setDisable(false);
+            save.setDisable(true);
+            addProperty.setDisable(false);
+            type.setDisable(false);
+            clearFields();
+
+        });
+    }
+
+    /*
+    set up columns with attributes of the property object
+     */
+    private void setUpTableColumns() {
         id.setCellValueFactory(new PropertyValueFactory<>("propertyId"));
         addr.setCellValueFactory(new PropertyValueFactory<>("address"));
         amount.setCellValueFactory(new PropertyValueFactory<>("rentAmount"));
@@ -121,257 +238,490 @@ public class PropertyController implements Initializable {
         schoTax.setCellValueFactory(new PropertyValueFactory<>("schoolTax"));
         propTax.setCellValueFactory(new PropertyValueFactory<>("propertyTax"));
         propVacant.setCellValueFactory(new PropertyValueFactory<>("isVacant"));
-        pieces.setCellValueFactory(new PropertyValueFactory<>("unitNum"));
+        pieces.setCellValueFactory(new PropertyValueFactory<>("numberRooms"));
         insu.setCellValueFactory(new PropertyValueFactory<>("insurance"));
-        
-        fillUpTable();  
-        //set up the value of comboBox (vacant)
-        vacant.getItems().addAll("Yes","No");
-        vacant.setValue("Yes");
-        // set up the values of comboBox (insurance)
-        setInsuranceComboBox(); 
-       
     }
-    
-      /**
-     * Calls the global variable company to get all properties.
-     * It sets all properties to the table view
+
+    /*
+     set up columns with attributes of the plex properties object
+     */
+    private void setUpTable2Columns() {
+
+        unit_id.setCellValueFactory(new PropertyValueFactory<>("propertyId"));
+
+        addr.setCellValueFactory(new PropertyValueFactory<>("address"));
+
+        t2_rent.setCellValueFactory(new PropertyValueFactory<>("rentAmount"));
+
+        t2_vacant.setCellValueFactory(new PropertyValueFactory<>("isVacant"));
+
+        unitRooms.setCellValueFactory(new PropertyValueFactory<>("numberRooms"));
+
+        appartment_num.setCellValueFactory(new PropertyValueFactory<>("apartmentNumber"));
+
+        plex_id.setCellValueFactory(new PropertyValueFactory<>("plexProperty"));
+        System.out.println("Ok");
+    }
+
+    /**
+     * Calls the global variable company to get all properties. It sets all
+     * properties to the table view
      */
     private void fillUpTable() {
         List<Property> dbProperties = Company.getInstance().getProperties();
-       properties = FXCollections.observableArrayList(dbProperties);
-       tableView.setItems(properties);  
+        properties = FXCollections.observableArrayList(dbProperties);
+        tableView.setItems(properties);
     }
-    
+
+    /**
+     * shows all properties of the selected plex in the second table
+     */
+    private void fillUpTable2(Property p) {
+
+        List<Property> plexProperties = ((Plex) p).getPlexProperties();
+        ObservableList<Property> pProperties = FXCollections.observableArrayList(plexProperties);
+        tableView2.setItems(pProperties);
+    }
+
     /**
      * Creates, validates and add new property
+     *
      * @param event
-     * @throws IOException 
+     * @throws IOException
      */
     @FXML
     void addNewProperty(ActionEvent event) throws IOException {
-            
-       if(validateFields()){
-            Property property = validateProperty(new Property());
-            int added = propertyDbAccess.add(property);
-            if (added > 0 && property != null){
-            properties.add(property);//we add property to the observebalList
-            clearFields();
-            alertWindow("Property is added... Do you want to add Mortgage",2);  
+
+        if (validateFields()) {
+            Property property = createProperty();
+            property = setPropertyAttributes(property);
+            int added = addPropertyToDataBase(property);
+            if (added > 0) {
+                properties.add(property);//we add property to the observebalList
+                Company.getInstance().addProperty(property);
+                clearFields();
+                alertWindow("Property is added", 0);
+            } else {
+                alertWindow("property is Not Added.Try Again", 1);
             }
-            else{
-            alertWindow("property is Not Added.Try Again",1);
-            }
-        } 
+        }
     }
-      
+
     /**
-     * validate and create property for adding or updating property.
+     * adds property to database
+     *
+     * @param property
+     * @return row affected
+     */
+    private int addPropertyToDataBase(Property property) {
+
+        PropertyDAO propertyDbAccess = getPropertyDAOaccess(property);
+        int added = propertyDbAccess.addProperty(property);
+        return added;
+    }
+
+    /**
+     * sets the values for adding or updating property.
+     *
      * @return property
      */
-    private Property validateProperty(Property property) {
-        
-            property.setAddress(address.getText());
-            property.setPropertyType(type.getText());
-            property.setRentAmount(Double.parseDouble(rentAmount.getText()));
-            property.setSchoolTax(Double.parseDouble(schoolTax.getText()));
-            property.setPropertyTax(Double.parseDouble(propertyTax.getText()));
-            property.setIsVacant(convertVacantOption());
-            property.setUnitNum(Integer.parseInt(numOfUnit.getText()));
-            // get id of selected insurabce????
-            property.setInsurance(getIns());  
+    private Property setPropertyAttributes(Property property) {
+
+        property.setAddress(address.getText());
+        property.setPropertyType(type.getValue());
+        property.setRentAmount(Double.parseDouble(rentAmount.getText()));
+        property.setSchoolTax(Double.parseDouble(schoolTax.getText()));
+        property.setPropertyTax(Double.parseDouble(propertyTax.getText()));
+        property.setIsVacant(vacant.getValue());
+        property.setNumberRooms(Integer.parseInt(numOfRooms.getText()));
+        property.setApartmentNumber(Integer.parseInt(appartment.getText()));
+        property.setInsurance(insurance.getValue());
 
         return property;
     }
-    
+
+    /**
+     * create the appropriate property that inherits from the concrete base
+     * class Property
+     *
+     * @return Property
+     */
+    private Property createProperty() {
+
+        Property property;
+
+        switch (type.getValue()) {
+            case "Condo": {
+                property = new Condo();
+                // set condo fees
+                ((Condo) property).setCondoFees(Double.parseDouble(oddAttribute.getText()));
+                break;
+
+            }
+            case "Plex": {
+                property = new Plex();
+                // set plex number of units
+                ((Plex) property).setNumberOfUnits(Integer.parseInt(oddAttribute.getText()));
+                // create plex properties
+                property = createPlexProperties(property);
+                break;
+            }
+            default: {
+                property = new House();
+            }
+        }
+
+        return property;
+    }
+
+    /**
+     * creates new properties of Plex property based on number of units and sets
+     * apartment numbers
+     *
+     * @param property
+     * @return
+     */
+    private Property createPlexProperties(Property property) {
+        int units = ((Plex) property).getNumberOfUnits();
+        for (int i = 0; i < units; i++) {
+            int appNum = i + 100;
+            Property p = new Property();
+            p.setApartmentNumber(appNum);
+            p.setPropertyType("Plex Unit");
+            p.setPlexProperty(property);
+            p.setIsVacant(true);
+            ((Plex) property).addPlexProperty(p);
+        }
+        return property;
+    }
+
     /**
      * call methods to validate inputs
-     * @return 
+     *
+     * @return valid or not
      */
-    private boolean validateFields(){
-        if (validateAddress() && validateType() && validateNumericData()){
+    private boolean validateFields() {
+        if (validateAddress() && validateNumericData()) {
             return true;
         }
-        else{
-           alertWindow("INVALID INPUTS...please enter appopriate values",1);
-        }
+        alertWindow("INVALID INPUTS...please enter appopriate values", 1);
         return false;
     }
+
     /**
-     * confirms and removes property: NEED TO maKE SURE ROW IS DELETED
-     * @param event 
+     * confirms with the user and removes property
+     *
+     * @param event
      */
     @FXML
     void deleteProperty(ActionEvent event) {
         Property propertyToRemove = tableView.getSelectionModel().getSelectedItem();
-        if (alertWindow("Are You sure you want to delete "+ propertyToRemove.toString()+ " ?",2)){
-            int deleted = propertyDbAccess.delete(propertyToRemove);
-            if (deleted != 0){
-                properties.remove(propertyToRemove);// Delete frfom observebalList
+        if (alertWindow("Are You sure you want to delete " + propertyToRemove.toString() + " ?", 2)) {
+            int deleted = getPropertyDAOaccess(propertyToRemove).deleteProperty(propertyToRemove);
+            if (deleted != 0) {
+                properties.remove(propertyToRemove);// Delete from observebalList
+                Company.getInstance().removeProperty(propertyToRemove);
+
+            } else {
+                alertWindow("property is Not deleted. Try Again", 1);
             }
-            else{
-              alertWindow("property is Not deleted. Try Again",1);  
-            }
-            
         }
     }
-    
+
     /**
-     * update the selected property
+     * puts back the values of the selected property into the fields, and
+     * disable all buttons except the save button
      */
     @FXML
-    void updateProperty(ActionEvent event){
-        
-        Property selected = tableView.getSelectionModel().getSelectedItem();
-        setTextfields(selected);
-        // backUp is the value we will keep in case there is a problem of updating
-        backUp = validateProperty(backUp);
-        backUp.setPropertyId(selected.getPropertyId());
-    }
-    
-    /**
-     * saves updated property to the database
-     */
-     @FXML
-    void saveUpdates(ActionEvent event) {
-        // this property is the old value(not updated) it has refernce to propeties in company
-          Property selected = tableView.getSelectionModel().getSelectedItem();
-          if (validateFields()){
-                Property property = validateProperty(selected);
-                 // now if we suuccessfully added the updated property to database we change the view
-                int updated = propertyDbAccess.update(property);
-                if (updated > 0){
-                    alertWindow("Property "+ property +" is Updated.",0);
-                    clearFields();
-                }
-                  // else if we did not added property, we want to keep the old property and notify user(backUp)
-                else{
-                   alertWindow("Property "+ (backUp)+" is Not Updated--->Data base  problem.",1);
-                   property.backUpCopy(backUp);//
-                   System.out.println(backUp);
-                   clearFields();
-                   System.out.println(Company.getInstance().getProperties().contains(property));
-                }
-            }
+    void updateProperty(ActionEvent event) {
+        save.setDisable(false);
+        addProperty.setDisable(true);
+        edit.setDisable(true);
+        delete.setDisable(true);
+        view.setDisable(true);
+        propertyToUpdate = tableView.getSelectionModel().getSelectedItem();
+        type.setDisable(true);
+        setTextfields();
+        setNonSharedFields();
 
     }
+
+    /**
+     *
+     * @param propertyToUpdate
+     */
+    private void setNonSharedFields() {
+
+        if (propertyToUpdate instanceof Plex) {
+            oddAttribute.setText(Integer.toString((((Plex) propertyToUpdate).getNumberOfUnits())));
+            oddAttribute.setDisable(true);
+        }
+        if (propertyToUpdate instanceof Condo) {
+            oddAttribute.setText(Double.toString((((Condo) propertyToUpdate).getCondoFees())));
+            oddAttribute.setDisable(false);
+        }
+    }
+
+    /**
+     * saves updated property to the database. It creates a new property, copies
+     * the id of the old property and update the value in The Company properties
+     * list and ObservebalList of table view. It notifies the user wether the
+     * Property is updated or not.
+     */
+    @FXML
+    void saveUpdates(ActionEvent event) {
+
+        if (validateFields()) {
+            Property propertyNewUpdate = createProperty(); // creates new property based on the property type
+            Property propertyUpdated = setPropertyAttributes(propertyNewUpdate); // sets the new values
+            propertyUpdated.setPropertyId(propertyToUpdate.getPropertyId()); // get the id from the old property
+
+            PropertyDAO propertyDbAccess = getPropertyDAOaccess(propertyUpdated); // get the specific instance of db access
+
+            int updated = propertyDbAccess.updateProperty(propertyUpdated);
+
+            if (updated > 0) {
+                // update the observebalList properties
+                int index = properties.indexOf(propertyToUpdate);
+
+                propertyToUpdate.updateExistentProperty(propertyUpdated);
+
+                properties.set(index, propertyToUpdate);
+                alertWindow("Property is updated", 0);
+            } else {
+                alertWindow("Property is not updated", 1);
+            }
+
+            clearFields();
+        } else {
+            alertWindow("inputs are not valid..try again", 1);
+        }
+        addProperty.setDisable(false);
+        save.setDisable(true);
+        type.setDisable(false);
+    }
+
     /**
      * sets values of a row back to the fields for editing.
      */
-    private void setTextfields(Property selected){
-       
-       address.setText(selected.getAddress());
-       type.setText(selected.getPropertyType());
-       rentAmount.setText(Double.toString(selected.getRentAmount()));
-       schoolTax.setText(Double.toString(selected.getSchoolTax()));
-       propertyTax.setText(Double.toString(selected.getPropertyTax()));
-       numOfUnit.setText(Integer.toString(selected.getUnitNum()));
-       vacant.setValue(convertVacantToString(selected.isIsVacant()));
-       setInsuranceComboBox();
-       ObservableList<Insurance> insurs = insurance.getItems();
-       for (Insurance ins : insurs){
-            if (selected.getInsurance().equals(ins)){
-                insurance.setValue(ins);
-                break;
-            }
-        }
-   } 
-   
-   /**
-   
+    private void setTextfields() {
+
+        address.setText(propertyToUpdate.getAddress());
+        setTypeComboBox();
+        type.setValue(propertyToUpdate.getPropertyType());
+        rentAmount.setText(Double.toString(propertyToUpdate.getRentAmount()));
+        schoolTax.setText(Double.toString(propertyToUpdate.getSchoolTax()));
+        propertyTax.setText(Double.toString(propertyToUpdate.getPropertyTax()));
+        numOfRooms.setText(Integer.toString(propertyToUpdate.getNumberRooms()));
+        vacant.setValue(propertyToUpdate.isIsVacant());
+        setInsuranceComboBox();
+        insurance.setValue(propertyToUpdate.getInsurance());
+        appartment.setText(Integer.toString(propertyToUpdate.getApartmentNumber()));
+
+    }
+
     /**
-     * pops up a window with information,error or confirmation message 
-     * @param message 
+     * pops up a window with information,error or confirmation message
+     *
+     * @param message
      */
-    private boolean alertWindow(String message,int i){
-        AlertType [] alertTypes = {AlertType.INFORMATION,AlertType.ERROR,AlertType.CONFIRMATION};
+    private boolean alertWindow(String message, int i) {
+        AlertType[] alertTypes = {AlertType.INFORMATION, AlertType.ERROR, AlertType.CONFIRMATION};
         Alert a = new Alert(alertTypes[i]);
         a.setTitle("Read the message below");
         a.setContentText(message);
-         a.setResizable(true);
+        a.setResizable(true);
         Optional<ButtonType> result = a.showAndWait();
-        return result.isPresent() && result.get() == ButtonType.OK; 
-     }
-    
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
+
     /**
      * clears text from fields
      */
     private void clearFields() {
-       address.setText(null);
-       type.setText(null);
-       rentAmount.setText(null);
-       schoolTax.setText(null);
-       propertyTax.setText(null);
-       numOfUnit.setText(null);
-       vacant.setValue("Yes");
-       setInsuranceComboBox();
-       insurance.getSelectionModel().selectFirst();
+        address.setText(null);
+        rentAmount.setText("0");
+        schoolTax.setText("0");
+        propertyTax.setText("0");
+        numOfRooms.setText("0");
+        oddAttribute.setText("0");
+        appartment.setText("0");
+        setVacantComboBox();
+        setInsuranceComboBox();
+        setTypeComboBox();
+
     }
 
     /**
-     This method validates the address, the user enters
-     * returns Boolean
-     * */
-    
-    private boolean validateAddress(){
+     * This method validates the address, the user enters returns Boolean
+     *
+     */
+    private boolean validateAddress() {
         return address.getText().matches("^[0-9]+\\s[a-zA-Z]+.*");
     }
-    /**
-     * This method returns true or false based on the selected option
-     * of the comboBox (vacant: yes = true, not vacant: no = false)
-     **/
-    
-    private boolean convertVacantOption(){
-        return vacant.getValue().equals("Yes");
-    }
-    private String convertVacantToString(boolean v){
-        if(v){
-            return "Yes";
-        }
-        else{
-            return "No";
-        }
-    }
-    /**
-     * returns Insurance object
-     * 
-     */
-    private Insurance getIns(){
-        String s = insurance.getValue().toString();
-        int i =  s.indexOf('{');
-        String insuranceId = s.substring(0,i);
-        InsuranceDbAccess idba = new InsuranceDbAccess();
-        Insurance insur = idba.getInsurance(insuranceId);
-        return insur;
-    }
-    
-    /** This method will validate the type of property based on length
-     * 
-     * @return Boolean
-     */
-    
-    private boolean validateType(){
-        return type.getText().length()>= 4;   
-    }
-    
+
     /**
      * This method checks if user enters valid numeric
+     *
      * @return Boolean
      */
-    
-    private boolean validateNumericData(){
-        try{
+    private boolean validateNumericData() {
+
+        try {
             Double.parseDouble(rentAmount.getText());
             Double.parseDouble(schoolTax.getText());
             Double.parseDouble(propertyTax.getText());
-            Integer.parseInt(numOfUnit.getText());
-        }
-        catch (NumberFormatException e){
+            Double.parseDouble(oddAttribute.getText());
+            Integer.parseInt(numOfRooms.getText());
+            Integer.parseInt(appartment.getText());
+        } catch (NumberFormatException e) {
             return false;
         }
         return true;
     }
-    
+
+    /**
+     * sets The values of vacant status comboBox
+     */
+    private void setVacantComboBox() {
+
+        ObservableList<Boolean> isPropertyVcant = FXCollections.observableArrayList(true, false);
+        vacant.setItems(isPropertyVcant);
+        vacant.getSelectionModel().selectFirst();
+
+    }
+
+    /**
+     * gets all the insurances and put them in the ComboBox
+     */
+    private void setInsuranceComboBox() {
+        //get insurances from database
+        List<Insurance> insurances = insuranceDbAccess.getList();
+        ObservableList<Insurance> data = FXCollections.observableArrayList(insurances);
+        insurance.setItems(data);
+        insurance.getSelectionModel().selectFirst();
+    }
+
+    /**
+     * sets The values of the property Types to the comboBox
+     */
+    private void setTypeComboBox() {
+        ObservableList<String> types = FXCollections.observableArrayList("House", "Plex", "Condo");
+        type.setItems(types);
+        type.getSelectionModel().selectFirst();
+    }
+
+    /**
+     * Switch and pass the property object to property view
+     *
+     * @throws IOException
+     */
+    @FXML
+    private void switchToView() throws IOException {
+        Property propertyView = tableView.getSelectionModel().getSelectedItem();
+        viewProperty(propertyView);
+    }
+
+    /**
+     * Opens a new window with property details
+     *
+     * @param p
+     * @throws IOException
+     */
+    private void viewProperty(Property p) throws IOException {
+        Stage viewWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("propertyView.fxml"));
+        Parent root = loader.load();
+        PropertyViewController controller = loader.getController();
+        viewWindow.setTitle("Property View");
+        controller.showPropertyDetails(p);
+        viewWindow.setScene(new Scene(root, 640, 480));
+        viewWindow.show();
+    }
+
+    /**
+     * view plex unit
+     *
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    void viewPlexProperty(ActionEvent event) throws IOException {
+        Property propertyView = tableView2.getSelectionModel().getSelectedItem();
+        viewProperty(propertyView);
+    }
+
+    /**
+     * listens for comboBox new value to change the label text which indicates
+     * the value to enter for the chosen property.
+     */
+    private void comboBoxListener() {
+        // Prperty Type Listener.. Changes the text of a label that describes the value that should be enterd.
+        type.setOnAction((event) -> {
+
+            String selectedItem = type.getSelectionModel().getSelectedItem();
+            String labelText = "pass------------>";
+
+            oddAttribute.setDisable(true);
+            appartment.setDisable(true);
+            rentAmount.setDisable(false);
+            numOfRooms.setDisable(false);
+
+            if (selectedItem != null) {
+                if (selectedItem.equals("Plex")) {
+                    oddAttribute.setDisable(false);
+                    labelText = "Plex Number Of Units";
+                    rentAmount.setDisable(true);
+                    numOfRooms.setDisable(true);
+                } else if (selectedItem.equals("Condo")) {
+                    oddAttribute.setDisable(false);
+                    appartment.setDisable(false);
+                    labelText = "Condos fees";
+                } else {
+                    oddAttribute.setDisable(true);
+                }
+
+                changeText.setText(labelText);
+            } else {
+                setTypeComboBox();
+            }
+
+        });
+    }
+
+    /**
+     * gets database access instance(Plex,house or condo)
+     */
+    private PropertyDAO getPropertyDAOaccess(Property property) {
+        PropertyDAO propertyDAOaccess = null;
+        if (property instanceof House) {
+            propertyDAOaccess = houseDbAccess;
+        } else if (property instanceof Plex) {
+            propertyDAOaccess = plexDbAccess;
+        } else if (property instanceof Condo) {
+            propertyDAOaccess = condoDbAccess;
+        }
+        return propertyDAOaccess;
+    }
+
+    /**
+     * switch to other view to plex unit
+     *
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    void editPlexProperty(ActionEvent event) throws IOException {
+        Stage viewWindow = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("updatePropertyPlex.fxml"));
+        Parent root = loader.load();
+        UpdatePlexPropertyController controller = loader.getController();
+        viewWindow.setTitle("Update Property Plex");
+        Property property = tableView2.getSelectionModel().getSelectedItem();
+        controller.updatePlexProperty(property);
+        viewWindow.setScene(new Scene(root, 640, 480));
+        viewWindow.show();
+    }
 
     @FXML
     private void switchToPrimary() throws IOException {
@@ -387,33 +737,5 @@ public class PropertyController implements Initializable {
     private void switchHome() throws IOException {
         App.setRoot("shelter");
     }
-    /**
-     * Switch and pass the property object to property view
-     * @throws IOException 
-     */
-    @FXML
-    private void switchToView() throws IOException {
-        Stage viewWindow = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("propertyView.fxml"));
-        Parent root = loader.load();
-        PropertyViewController controller = loader.getController();
-        viewWindow.setTitle("Property View");
-        Property propertyView = tableView.getSelectionModel().getSelectedItem();
-        controller.showPropertyDetails(propertyView);
-        viewWindow.setScene(new Scene(root, 640, 480));
-        viewWindow.show(); 
-    }
-  
- 
-    /**
-     * gets all the insurances and puts them in the ComboBox
-     */
-    private void setInsuranceComboBox(){
-     
-        List<Insurance> insurances = insuranceDbAccess.getList();
-        ObservableList<Insurance> data = FXCollections.observableArrayList(insurances);
-        insurance.setItems(data);
-        insurance.getSelectionModel().selectFirst();
 
-    }
 }

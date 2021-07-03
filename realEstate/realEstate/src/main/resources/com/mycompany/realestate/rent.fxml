@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="1168.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.RentController">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="905.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.RentController">
    <top>
       <AnchorPane prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: #718355;" BorderPane.alignment="CENTER">
          <children>
@@ -19,33 +27,31 @@
    <left>
       <AnchorPane prefHeight="349.0" prefWidth="378.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="175.0" text="LeaseId" />
-            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="Method of Payment" />
-            <TextField layoutX="201.0" layoutY="60.0" prefHeight="25.0" prefWidth="163.0" />
-            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="173.0" text="Amount Paid" />
-            <TextField layoutX="201.0" layoutY="102.0" prefHeight="25.0" prefWidth="165.0" />
-            <Label layoutX="10.0" layoutY="145.0" prefHeight="30.0" prefWidth="173.0" text="Date of Payment" />
-            <Button layoutX="53.0" layoutY="264.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
+            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="175.0" text="Lease :" />
+            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="Method of Payment :" />
+            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="173.0" text="Amount Paid :" />
+            <TextField fx:id="amount" layoutX="201.0" layoutY="102.0" prefHeight="25.0" prefWidth="165.0" />
+            <Label layoutX="10.0" layoutY="145.0" prefHeight="30.0" prefWidth="173.0" text="Date of Payment :" />
+            <Button fx:id="add" layoutX="90.0" layoutY="198.0" mnemonicParsing="false" onAction="#addNewRent" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
 
             </Button>
-            <Button layoutX="248.0" layoutY="264.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: #eec591;" text="Save">
+            <Button fx:id="save" disable="true" layoutX="189.0" layoutY="198.0" mnemonicParsing="false" onAction="#saveUpdatedRent" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: #eec591;" text="Save">
             </Button>
-            <DatePicker layoutX="202.0" layoutY="148.0" prefHeight="25.0" prefWidth="163.0" />
-            <ComboBox layoutX="202.0" layoutY="21.0" prefHeight="25.0" prefWidth="164.0" promptText="Choose LeaseId" />
-            <TextField layoutX="200.0" layoutY="193.0" prefHeight="25.0" prefWidth="165.0" />
-            <Label layoutX="12.0" layoutY="191.0" prefHeight="30.0" prefWidth="173.0" text="Fully Paid (enter yes or no)" />
+            <DatePicker fx:id="pDate" layoutX="202.0" layoutY="148.0" prefHeight="25.0" prefWidth="163.0" />
+            <ComboBox fx:id="leaseId" layoutX="202.0" layoutY="21.0" prefHeight="25.0" prefWidth="164.0" promptText="Choose Lease" />
+            <ComboBox fx:id="pmethod" layoutX="201.0" layoutY="59.0" prefHeight="25.0" prefWidth="166.0" />
          </children>
       </AnchorPane>
    </left>
    <center>
-      <TableView prefHeight="475.0" prefWidth="513.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="395.0" prefWidth="416.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" resizable="false" text="rentId" />
-          <TableColumn prefWidth="84.0" text="leaseId" />
-            <TableColumn prefWidth="66.0" text="amountPaid" />
-            <TableColumn prefWidth="75.0" text="method" />
-            <TableColumn prefWidth="75.0" text="date" />
-            <TableColumn prefWidth="75.0" text="fullyPaid" />
+          <TableColumn fx:id="id" prefWidth="75.0" resizable="false" text="rentId" />
+          <TableColumn fx:id="lease" prefWidth="84.0" text="leaseId" />
+            <TableColumn fx:id="paid" prefWidth="66.0" text="amountPaid" />
+            <TableColumn fx:id="method" prefWidth="75.0" text="method" />
+            <TableColumn fx:id="date" prefWidth="75.0" text="date" />
+            <TableColumn fx:id="fullyPaid" prefWidth="75.0" text="fullyPaid" />
         </columns>
       </TableView>
    </center>
@@ -57,20 +63,20 @@
                   <Image url="@images/rent.jpg" />
                </image>
             </ImageView>
-            <Button alignment="CENTER_RIGHT" layoutX="968.0" layoutY="36.0" mnemonicParsing="false" onAction="#switchHome" style="-fx-background-color: #0099ff;" styleClass="next" text="Home Page" textAlignment="RIGHT" textFill="WHITE" />
+            <Button alignment="CENTER_RIGHT" layoutX="786.0" layoutY="45.0" mnemonicParsing="false" onAction="#switchHome" style="-fx-background-color: #0099ff;" styleClass="next" text="Home Page" textAlignment="RIGHT" textFill="WHITE" />
          </children></AnchorPane>
    </bottom>
       <right>
-      <AnchorPane prefHeight="446.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="395.0" prefWidth="157.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="60.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
+            <Button fx:id="delete" disable="true" layoutX="60.0" layoutY="175.0" mnemonicParsing="false" onAction="#removeRent" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
 
             </Button>
-            <Button layoutX="53.0" layoutY="73.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
+            <Button fx:id="edit" disable="true" layoutX="53.0" layoutY="73.0" mnemonicParsing="false" onAction="#modifyRent" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
 
             </Button>
-            <Label layoutX="18.0" layoutY="14.0" prefHeight="42.0" prefWidth="129.0" text="Select rent from table and click on edit" wrapText="true" />
-            <Label layoutX="20.0" layoutY="119.0" prefHeight="42.0" prefWidth="129.0" text="Select rent from table and click on delete" wrapText="true" />
+            <Label layoutX="18.0" layoutY="14.0" prefHeight="55.0" prefWidth="129.0" text="Select rent from table and click on edit" wrapText="true" />
+            <Label layoutX="20.0" layoutY="119.0" prefHeight="53.0" prefWidth="129.0" text="Select rent from table and click on delete" wrapText="true" />
          </children>
       </AnchorPane>
    </right>

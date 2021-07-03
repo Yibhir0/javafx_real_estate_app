@@ -82,14 +82,20 @@ public class Insurance {
     @Override
     public boolean equals(Object obj) {
 
-		if(!(obj instanceof Insurance) || obj == null) {
-			return false;
-		}
+	if(!(obj instanceof Insurance) || obj == null) {
+            return false;
+        }
                     
-               return ((Insurance) obj).insuranceId == this.insuranceId;
+        return ((Insurance) obj).insuranceId == this.insuranceId;
 		
-				
-	}
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + this.insuranceId;
+        return hash;
+    }
 
 	/**
 	 * @override CompareTo method.

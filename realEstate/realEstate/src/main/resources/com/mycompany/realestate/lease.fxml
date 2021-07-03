@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="905.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.LeaseController">
    <top>
       <AnchorPane prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: #2a9d8f;" BorderPane.alignment="CENTER">
@@ -17,23 +25,25 @@
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane prefHeight="457.0" prefWidth="421.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="renew" prefHeight="455.0" prefWidth="380.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="175.0" text="TenantId" />
-            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="PropertyId" />
-            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="173.0" text="LeaseTerm( number of months)" />
-            <TextField layoutX="201.0" layoutY="102.0" prefHeight="25.0" prefWidth="165.0" />
-            <Label layoutX="10.0" layoutY="145.0" prefHeight="30.0" prefWidth="173.0" text="startDate" />
-            <Button layoutX="35.0" layoutY="238.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
+            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="175.0" text="TenantId :" />
+            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="Property:" />
+            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="191.0" text="LeaseTerm( # of months) :" />
+            <TextField fx:id="term" layoutX="201.0" layoutY="102.0" prefHeight="25.0" prefWidth="165.0" />
+            <Label layoutX="10.0" layoutY="145.0" prefHeight="30.0" prefWidth="173.0" text="startDate :" />
+            <Button fx:id="add" layoutX="96.0" layoutY="291.0" mnemonicParsing="false" onAction="#addNewLease" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
 
             </Button>
-            <Button layoutX="300.0" layoutY="238.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #eec591;" text="Save">
+            <Button fx:id="save" disable="true" layoutX="208.0" layoutY="291.0" mnemonicParsing="false" onAction="#saveUpdatedLease" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #eec591;" text="Save">
             </Button>
-            <DatePicker layoutX="201.0" layoutY="147.0" prefHeight="25.0" prefWidth="165.0" />
-            <ComboBox layoutX="201.0" layoutY="21.0" prefHeight="25.0" prefWidth="163.0" promptText="Choose BankId" />
-            <ComboBox layoutX="201.0" layoutY="59.0" prefHeight="25.0" prefWidth="163.0" promptText="Choose PropertyId" />
-            <Label layoutX="9.0" layoutY="185.0" prefHeight="30.0" prefWidth="173.0" text="Renewal ( enter yes or no)" />
-            <TextField layoutX="201.0" layoutY="187.0" prefHeight="25.0" prefWidth="165.0" />
+            <DatePicker fx:id="sdate" layoutX="201.0" layoutY="147.0" prefHeight="25.0" prefWidth="165.0" />
+            <ComboBox fx:id="tenantId" layoutX="201.0" layoutY="21.0" prefHeight="25.0" prefWidth="163.0" promptText="Choose TenantId" />
+            <ComboBox fx:id="propertyId" layoutX="201.0" layoutY="59.0" prefHeight="25.0" prefWidth="163.0" promptText="Choose Property" />
+            <Label layoutX="9.0" layoutY="185.0" prefHeight="30.0" prefWidth="191.0" text="Renewal(True(yes)False(no)):" />
+            <ComboBox fx:id="renewal" layoutX="202.0" layoutY="189.0" prefHeight="25.0" prefWidth="165.0" />
+            <Button fx:id="upload" layoutX="35.0" layoutY="253.0" mnemonicParsing="false" onAction="#uploadLease" prefHeight="25.0" prefWidth="303.0" text="Upload Pdf File" />
+            <Label fx:id="leaseUpload" layoutX="36.0" layoutY="227.0" prefHeight="23.0" prefWidth="303.0" />
          </children>
       </AnchorPane>
    </left>
@@ -49,14 +59,15 @@
          </children></AnchorPane>
    </bottom>
    <center>
-      <TableView prefHeight="457.0" prefWidth="508.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="457.0" prefWidth="508.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="122.00000250339508" resizable="false" text="leaseId" />
-          <TableColumn minWidth="4.0" prefWidth="121.33336639404297" text="propertyId" />
-            <TableColumn prefWidth="90.00007629394531" text="startDate" />
-            <TableColumn prefWidth="129.33331298828125" text="term" />
-            <TableColumn prefWidth="128.66665649414062" text="tenantId" />
-            <TableColumn prefWidth="75.0" text="renewal" />
+          <TableColumn fx:id="id" prefWidth="122.00000250339508" resizable="false" text="leaseId" />
+          <TableColumn fx:id="pid" minWidth="4.0" prefWidth="121.33336639404297" text="property" />
+            <TableColumn fx:id="startD" prefWidth="90.00007629394531" text="startDate" />
+            <TableColumn fx:id="endDate" prefWidth="129.33331298828125" text="endDate" />
+            <TableColumn fx:id="tenant" prefWidth="128.66665649414062" text="tenantId" />
+            <TableColumn fx:id="pdfFile" prefWidth="75.0" text="pdfLease" />
+            <TableColumn fx:id="renews" prefWidth="75.0" text="renewal" />
         </columns>
        
       </TableView>
@@ -64,16 +75,16 @@
       <right>
       <AnchorPane prefHeight="446.0" prefWidth="170.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="60.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
+            <Button fx:id="delete" disable="true" layoutX="60.0" layoutY="175.0" mnemonicParsing="false" onAction="#removeLease" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
 
             </Button>
-            <Button layoutX="53.0" layoutY="73.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
+            <Button fx:id="edit" disable="true" layoutX="53.0" layoutY="73.0" mnemonicParsing="false" onAction="#modifyLease" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
 
             </Button>
-            <Label layoutX="18.0" layoutY="14.0" prefHeight="42.0" prefWidth="129.0" text="Select lease from table and click on edit" wrapText="true" />
-            <Label layoutX="20.0" layoutY="119.0" prefHeight="42.0" prefWidth="129.0" text="Select  lease from table and click on delete" wrapText="true" />
-            <Label layoutX="20.0" layoutY="236.0" prefHeight="42.0" prefWidth="129.0" text="Select  lease from table and click on view" wrapText="true" />
-            <Button layoutX="68.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchToView" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #aaf683;" text="View" />
+            <Label layoutX="18.0" layoutY="14.0" prefHeight="54.0" prefWidth="129.0" text="Select lease from table and click on edit" wrapText="true" />
+            <Label layoutX="20.0" layoutY="119.0" prefHeight="52.0" prefWidth="129.0" text="Select  lease from table and click on delete" wrapText="true" />
+            <Label layoutX="20.0" layoutY="236.0" prefHeight="59.0" prefWidth="129.0" text="Select  lease from table and click on view" wrapText="true" />
+            <Button fx:id="view" disable="true" layoutX="68.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchToView" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #aaf683;" text="View" />
          </children>
       </AnchorPane>
    </right>

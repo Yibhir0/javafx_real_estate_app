@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.realestate.model;
 
 import java.time.LocalDate;
 
+
 /**
- *
- * @author T450
+ * Mortgage object
+ * @author Yassine Ibhir
  */
 public class Mortgage {
 
@@ -25,7 +22,8 @@ public class Mortgage {
     private boolean fullyPaid;
     private Property property;
     private Bank bank;
-
+    
+    // getters
     public int getMortgageId() {
         return mortgageId;
     }
@@ -57,7 +55,8 @@ public class Mortgage {
     public Bank getBank() {
         return bank;
     }
-
+    
+    //setters
     public void setMortgageId(int mortgageId) {
         this.mortgageId = mortgageId;
     }
@@ -89,5 +88,23 @@ public class Mortgage {
     public void setBank(Bank bank) {
         this.bank = bank;
     }
-    
+
+    public void updateMortgae(Mortgage mortgageNewUpdate) {
+        this.mortgageId = mortgageNewUpdate.mortgageId;
+        this.term = mortgageNewUpdate.term;
+        this.amount = mortgageNewUpdate.amount;
+        this.startDate = mortgageNewUpdate.startDate;
+        this.downPayment = mortgageNewUpdate.downPayment;
+        this.fullyPaid = mortgageNewUpdate.fullyPaid;
+        this.property= mortgageNewUpdate.property;
+        this.bank = mortgageNewUpdate.bank;
+    }
+//      private int mortgageId;
+//    private int term;
+//    private double amount;
+//    private Date startDate;
+//    private double downPayment;
+//    private boolean fullyPaid;
+//    private Property property;
+//    private Bank bank;
 }

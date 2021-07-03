@@ -1,6 +1,5 @@
 package com.mycompany.realestate;
-//import com.mycompany.realestate.model.*;
-import com.mycompany.realestate.model.database.PropertyDbAccess;
+import com.mycompany.realestate.model.database.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,10 +9,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
+ * main class
  * JavaFX App
+ * @author Yassine Ibhir
  */
 public class App extends Application {
-
+    private static final PropertyDAO []  access = new PropertyDAO[3];
     private static Scene scene;
 
     @Override
@@ -33,9 +34,21 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        PropertyDbAccess  access = new PropertyDbAccess();
-        access.instantiate();
+        
+        access[0] = (new HouseDbAccess());
+        access[1] = (new PlexDbAccess());
+        access[2] = (new CondoDbAccess());
+        load();
         launch();
     }
+    /**
+     * loads all properties from database
+     */
+    private static void load(){
+        for (PropertyDAO acces : access) {
+            acces.instantiateProperties();
+        }
+    }
+    
 
 }

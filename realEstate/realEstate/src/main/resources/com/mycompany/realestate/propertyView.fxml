@@ -8,66 +8,55 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="1069.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.PropertyViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="1180.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.PropertyViewController">
   
     <left>
-      <AnchorPane prefHeight="316.0" prefWidth="294.0" styleClass="bgreen" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="473.0" prefWidth="306.0" styleClass="bgreen" BorderPane.alignment="CENTER">
          <children>
-            <GridPane layoutY="73.0" prefHeight="247.0" prefWidth="286.0">
+            <GridPane layoutX="-2.0" layoutY="69.0" prefHeight="272.0" prefWidth="313.0" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="68.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.33334350585938" minWidth="10.0" prefWidth="99.66665649414062" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="186.33334350585938" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.33334350585938" minWidth="10.0" prefWidth="81.66666666666667" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.99998982747394" minWidth="10.0" prefWidth="244.33333333333331" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="43.33332443237305" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="44.333353678385414" minHeight="0.0" prefHeight="44.333353678385414" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="39.333343505859375" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="45.33331298828125" minHeight="10.0" prefHeight="45.33331298828125" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="67.33333333333331" minHeight="0.0" prefHeight="45.99998982747397" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="78.0" minHeight="0.0" prefHeight="48.66667683919269" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="48.66667683919269" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="29.333333333333332" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.666666666666664" minHeight="0.0" prefHeight="28.99999491373698" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="87.99999999999999" minHeight="10.0" prefHeight="35.66668701171874" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="122.00000508626302" minHeight="10.0" prefHeight="28.33331298828125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="123.00001525878906" minHeight="10.0" prefHeight="36.66666666666666" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="142.66666666666663" minHeight="0.0" prefHeight="37.33335367838538" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="156.66664632161456" minHeight="0.0" prefHeight="38.66666666666663" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="156.66664632161456" minHeight="10.0" prefHeight="38.66666666666663" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="156.66664632161456" minHeight="10.0" prefHeight="38.66666666666663" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="156.66664632161456" minHeight="10.0" prefHeight="38.66666666666663" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label prefHeight="43.0" prefWidth="53.0" text="Address :" />
-                  <Label fx:id="addrr" layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="205.0" text="5430 chemin de la cote st-luc app 4 Montreal Quebec" wrapText="true" GridPane.columnIndex="1" />
-                  <Label prefHeight="32.0" prefWidth="52.0" text="Type :" GridPane.rowIndex="1" />
-                  <Label fx:id="type" prefHeight="37.0" prefWidth="240.0" text="Condos" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label prefHeight="39.0" prefWidth="61.0" text="Rent :" GridPane.rowIndex="2" />
-                  <Label fx:id="rentAmount" prefHeight="41.0" prefWidth="240.0" text="800$" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label prefHeight="29.0" prefWidth="75.0" text="Address :" />
+                  <Label fx:id="addrr" layoutX="10.0" layoutY="10.0" prefHeight="21.0" prefWidth="232.0" text="5430 chemin de la cote st-luc app 4 Montreal Quebec" wrapText="true" GridPane.columnIndex="1" />
+                  <Label prefHeight="29.0" prefWidth="73.0" text="Type :" GridPane.rowIndex="1" />
+                  <Label fx:id="type" prefHeight="37.0" prefWidth="240.0" text="Condo" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label prefHeight="36.0" prefWidth="72.0" text="Ap#:" GridPane.rowIndex="2" />
+                  <Label fx:id="apartment" prefHeight="41.0" prefWidth="240.0" text="3" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label prefHeight="35.0" prefWidth="52.0" text="Vacant:" GridPane.rowIndex="3" />
                   <Label fx:id="vacant" prefHeight="45.0" prefWidth="240.0" text="Yes" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label prefHeight="42.0" prefWidth="103.0" text="Property Tax:" wrapText="true" GridPane.rowIndex="5" />
                   <Label fx:id="schoolTax" prefHeight="47.0" prefWidth="240.0" text="1000$" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label prefHeight="44.0" prefWidth="106.0" text="School Tax:" wrapText="true" GridPane.rowIndex="4" />
-                  <Label fx:id="propertyTax" prefHeight="35.0" prefWidth="240.0" text="1000$" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label prefHeight="42.0" prefWidth="79.0" text="Insurance:" GridPane.rowIndex="6" />
-                  <Label fx:id="insurance" prefHeight="32.0" prefWidth="232.0" text="toString" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Label layoutX="10.0" layoutY="187.0" prefHeight="35.0" prefWidth="102.0" text="Number of rooms:" GridPane.rowIndex="7" />
-                  <Label fx:id="unitNum" layoutX="109.0" layoutY="189.0" prefHeight="32.0" prefWidth="232.0" text="3" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label fx:id="propertyTax" prefHeight="57.0" prefWidth="213.0" text="1000$" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label prefHeight="31.0" prefWidth="80.0" text="Insurance:" GridPane.rowIndex="6" />
+                  <Label fx:id="insurance" prefHeight="31.0" prefWidth="237.0" text="toString" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label layoutX="10.0" layoutY="204.0" prefHeight="42.0" prefWidth="79.0" text="Current Tenant:" wrapText="true" GridPane.rowIndex="7" />
+                  <Label fx:id="tenant" layoutX="79.0" layoutY="204.0" prefHeight="31.0" prefWidth="235.0" text="toString" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label prefHeight="38.0" prefWidth="81.0" text="Number Of units/rooms:" wrapText="true" GridPane.rowIndex="8" />
+                  <Label fx:id="unitNum" prefHeight="31.0" prefWidth="237.0" text="toString" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label layoutX="10.0" layoutY="53.0" prefHeight="36.0" prefWidth="72.0" text="Rent :" GridPane.rowIndex="9" />
+                  <Label fx:id="rentAmount" layoutX="81.0" layoutY="53.0" prefHeight="41.0" prefWidth="240.0" text="800$" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                </children>
             </GridPane>
             <Label alignment="CENTER" layoutX="104.0" layoutY="17.0" prefHeight="35.0" prefWidth="68.0" style="-fx-background-color: #6d597a;" styleClass="news" text="Details" textFill="WHITE" wrapText="true" />
          </children>
       </AnchorPane>
    </left>
-   <center>
-      <AnchorPane prefHeight="333.0" prefWidth="664.0" BorderPane.alignment="CENTER">
-         <children>
-            <ListView fx:id="mortgages" layoutX="14.0" layoutY="75.0" prefHeight="249.0" prefWidth="140.0" />
-            <ListView fx:id="repairs" layoutX="172.0" layoutY="75.0" prefHeight="251.0" prefWidth="143.0" />
-            <ListView fx:id="utilities" layoutX="338.0" layoutY="75.0" prefHeight="251.0" prefWidth="140.0" />
-            <Label alignment="CENTER" layoutX="61.0" layoutY="21.0" prefHeight="35.0" prefWidth="68.0" style="-fx-background-color: #e5383b;" styleClass="news" text="Mortgages" textFill="WHITE" />
-            <ListView fx:id="leases" layoutX="493.0" layoutY="75.0" prefHeight="252.0" prefWidth="146.0" />
-            <Label alignment="CENTER" layoutX="211.0" layoutY="21.0" prefHeight="35.0" prefWidth="68.0" style="-fx-background-color: #15616d;" styleClass="news" text="Repairs" textFill="WHITE" />
-            <Label alignment="CENTER" layoutX="372.0" layoutY="21.0" prefHeight="35.0" prefWidth="68.0" style="-fx-background-color: #4f6d7a;" styleClass="news" text="Utilities" textFill="WHITE" />
-            <Label alignment="CENTER" layoutX="532.0" layoutY="21.0" prefHeight="35.0" prefWidth="68.0" style="-fx-background-color: #2a9d8f;" styleClass="news" text="Leases" textFill="WHITE" />
-         </children>
-      </AnchorPane>
-   </center>
-   <right>
-      <AnchorPane prefHeight="319.0" prefWidth="126.0" styleClass="bgreen" BorderPane.alignment="CENTER" />
-   </right>
    <top>
       <AnchorPane prefHeight="48.0" prefWidth="1069.0" BorderPane.alignment="CENTER">
          <children>
@@ -78,4 +67,18 @@
    <bottom>
       <AnchorPane prefHeight="35.0" prefWidth="1069.0" style="-fx-background-color: #aaf683;" BorderPane.alignment="CENTER" />
    </bottom>
+   <center>
+      <AnchorPane prefHeight="480.0" prefWidth="889.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="mortgages" layoutX="31.0" layoutY="88.0" prefHeight="142.0" prefWidth="401.0" />
+            <ListView fx:id="repairs" layoutX="478.0" layoutY="88.0" prefHeight="142.0" prefWidth="401.0" />
+            <ListView fx:id="utilities" layoutX="31.0" layoutY="325.0" prefHeight="142.0" prefWidth="401.0" />
+            <Label alignment="CENTER" layoutX="211.0" layoutY="28.0" prefHeight="35.0" prefWidth="68.0" style="-fx-background-color: #e5383b;" styleClass="news" text="Mortgages" textFill="WHITE" />
+            <ListView fx:id="leases" layoutX="478.0" layoutY="325.0" prefHeight="142.0" prefWidth="401.0" />
+            <Label alignment="CENTER" layoutX="660.0" layoutY="21.0" prefHeight="35.0" prefWidth="68.0" style="-fx-background-color: #15616d;" styleClass="news" text="Repairs" textFill="WHITE" />
+            <Label alignment="CENTER" layoutX="211.0" layoutY="259.0" prefHeight="35.0" prefWidth="68.0" style="-fx-background-color: #4f6d7a;" styleClass="news" text="Utilities" textFill="WHITE" />
+            <Label alignment="CENTER" layoutX="669.0" layoutY="259.0" prefHeight="35.0" prefWidth="68.0" style="-fx-background-color: #2a9d8f;" styleClass="news" text="Leases" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

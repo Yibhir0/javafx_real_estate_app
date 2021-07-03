@@ -1,26 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.realestate.model;
+
 
 import java.time.LocalDate;
 
+
 /**
- *
- * @author T450
+ * This class represents Rent Object
+ * @author Yassine Ibhir
  */
 public class Rent {
 
     @Override
     public String toString() {
-        return "Rent{" + "rentId=" + rentId + ", fullyBaid=" + fullyBaid + ", lease=" + lease + '}';
+        return "Rent{" + "rentId=" + rentId + ", fullyBaid=" + fullyPaid + ", payment date=" + paymentDate + '}';
     }
     private int rentId;
     private String paymentMethod;
     private LocalDate paymentDate;
-    private boolean fullyBaid;
+    private Double amountPaid;
+    private boolean fullyPaid;
     private Lease lease;
 
     public int getRentId() {
@@ -35,8 +34,8 @@ public class Rent {
         return paymentDate;
     }
 
-    public boolean isFullyBaid() {
-        return fullyBaid;
+    public boolean isFullyPaid() {
+        return fullyPaid;
     }
 
     public Lease getLease() {
@@ -55,11 +54,26 @@ public class Rent {
         this.paymentDate = paymentDate;
     }
 
-    public void setFullyBaid(boolean fullyBaid) {
-        this.fullyBaid = fullyBaid;
+    public void setFullyPaid(boolean fullyPaid) {
+        this.fullyPaid = fullyPaid;
     }
 
     public void setLease(Lease lease) {
         this.lease = lease;
+    }
+
+    public Double getAmountPaid() {
+        return amountPaid;
+    }
+
+    public void setAmountPaid(Double amountPaid) {
+        this.amountPaid = amountPaid;
+    }
+
+    public void updateRent(Rent rentUpdated) {
+        this.amountPaid = rentUpdated.amountPaid;
+        this.fullyPaid = rentUpdated.fullyPaid ;
+        this.paymentDate = rentUpdated.paymentDate;
+        this.paymentMethod =  rentUpdated.paymentMethod;
     }
 }

@@ -27,22 +27,22 @@
    <left>
       <AnchorPane prefHeight="349.0" prefWidth="378.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="175.0" text="Property" />
-            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="Repair cost" />
-            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="173.0" text="Contractor" />
-            <Button layoutX="68.0" layoutY="267.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
+            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="175.0" text="Property :" />
+            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="Repair cost :" />
+            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="173.0" text="Contractor :" />
+            <Button fx:id="add" layoutX="98.0" layoutY="267.0" mnemonicParsing="false" onAction="#addNewRepair" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
 
             </Button>
-            <Button layoutX="251.0" layoutY="267.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #eec591;" text="Save">
+            <Button fx:id="save" disable="true" layoutX="202.0" layoutY="267.0" mnemonicParsing="false" onAction="#saveUpdatedRepair" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #eec591;" text="Save">
             </Button>
             <TextField fx:id="cost" layoutX="202.0" layoutY="59.0" prefHeight="25.0" prefWidth="163.0" />
             <ComboBox fx:id="props" layoutX="202.0" layoutY="21.0" prefHeight="25.0" prefWidth="163.0" promptText="Choose property" />
             <ComboBox fx:id="contracts" layoutX="202.0" layoutY="102.0" prefHeight="25.0" prefWidth="163.0" promptText="Choose Contractor" />
-            <Label layoutX="10.0" layoutY="140.0" prefHeight="30.0" prefWidth="173.0" text="Start Date" />
+            <Label layoutX="10.0" layoutY="140.0" prefHeight="30.0" prefWidth="173.0" text="Start Date :" />
             <DatePicker fx:id="sdate" layoutX="201.0" layoutY="143.0" prefHeight="25.0" prefWidth="163.0" />
-            <Label layoutX="10.0" layoutY="183.0" prefHeight="30.0" prefWidth="173.0" text="End Date" />
+            <Label layoutX="10.0" layoutY="183.0" prefHeight="30.0" prefWidth="173.0" text="End Date :" />
             <DatePicker fx:id="edate" layoutX="201.0" layoutY="185.0" prefHeight="25.0" prefWidth="163.0" />
-            <Label layoutX="10.0" layoutY="222.0" prefHeight="30.0" prefWidth="173.0" text="Repair Type" />
+            <Label layoutX="10.0" layoutY="222.0" prefHeight="30.0" prefWidth="173.0" text="Repair Type or description :" />
             <TextField fx:id="type" layoutX="201.0" layoutY="224.0" prefHeight="25.0" prefWidth="163.0" />
          </children>
       </AnchorPane>
@@ -74,14 +74,14 @@
        <right>
       <AnchorPane prefHeight="446.0" prefWidth="170.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="60.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
+            <Button fx:id="delete" disable="true" layoutX="60.0" layoutY="175.0" mnemonicParsing="false" onAction="#deleteRepair" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
 
             </Button>
-            <Button layoutX="53.0" layoutY="73.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
+            <Button fx:id="edit" disable="true" layoutX="53.0" layoutY="73.0" mnemonicParsing="false" onAction="#modifyRepair" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
 
             </Button>
-            <Label layoutX="18.0" layoutY="14.0" prefHeight="42.0" prefWidth="129.0" text="Select repair from table and click on edit" wrapText="true" />
-            <Label layoutX="20.0" layoutY="119.0" prefHeight="42.0" prefWidth="129.0" text="Select repair from table and click on delete" wrapText="true" />
+            <Label layoutX="18.0" layoutY="6.0" prefHeight="50.0" prefWidth="129.0" text="Select repair from table and click on edit" wrapText="true" />
+            <Label layoutX="20.0" layoutY="119.0" prefHeight="51.0" prefWidth="129.0" text="Select repair from table and click on delete" wrapText="true" />
          </children>
       </AnchorPane>
    </right>

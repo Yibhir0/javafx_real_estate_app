@@ -1,19 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.realestate.model;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
+ * tests insurance methods
  *
- * @author T450
+ * @author Yassine Ibhir
  */
 public class InsuranceTest {
-    
+
     public InsuranceTest() {
     }
 
@@ -71,30 +67,32 @@ public class InsuranceTest {
     }
 
     /**
-     * Test of toString method, of class Insurance.
+     * Test of equals method when true, of class Insurance.
      */
-//    @Test
-//    public void testToString() {
-//        System.out.println("toString");
-//        Insurance instance = new Insurance();
-//        String expResult = "";
-//        String result = instance.toString();
-//        assertEquals(expResult, result);
-//      
-//    }
-//
-//    /**
-//     * Test of equals method, of class Insurance.
-//     */
-//    @Test
-//    public void testEquals() {
-//        System.out.println("equals");
-//        Object obj = null;
-//        Insurance instance = new Insurance();
-//        boolean expResult = false;
-//        boolean result = instance.equals(obj);
-//        assertEquals(expResult, result);
-//       
-//    }
-    
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Object obj = new Insurance();
+        Insurance instance = new Insurance();
+        boolean expResult = true;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of equals method when FALSE, of class Insurance.
+     */
+    @Test
+    public void testEqualsFalse() {
+        System.out.println("Notequals");
+        Object obj = new Insurance();
+        Insurance instance = new Insurance();
+        instance.setInsuranceId(1);
+        boolean expResult = false;
+        boolean result = instance.equals(obj);
+        assertEquals(expResult, result);
+
+    }
+
 }

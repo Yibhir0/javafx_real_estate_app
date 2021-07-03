@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.realestate.model;
 
 import java.util.ArrayList;
@@ -11,11 +6,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
+ * Test for property methods
  *
- * @author T450
+ * @author Yassine Ibhir
  */
 public class testProperty {
-    
+
     /**
      * Test of setPropertyId and getPropertyId methods, of class Property.
      */
@@ -26,8 +22,8 @@ public class testProperty {
         instance.setPropertyId(propertyId);
         int expected = 1;
         int result = instance.getPropertyId();
-        assertEquals(expected,result);
-       
+        assertEquals(expected, result);
+
     }
 
     /**
@@ -40,7 +36,7 @@ public class testProperty {
         instance.setAddress(propertyId);
         String expected = "5430 cote saint luc";
         String result = instance.getAddress();
-        assertEquals(expected,result);
+        assertEquals(expected, result);
     }
 
     /**
@@ -53,20 +49,7 @@ public class testProperty {
         instance.setPropertyType(type);
         String expected = "duplex";
         String result = instance.getPropertyType();
-        assertEquals(expected,result);
-    }
-    
-     /**
-     * Test of setunitNum and getunitNum methods, of class Property.
-     */
-    @Test
-    public void testGetSetUnitNum() {
-        int unitNum = 6 ;
-        Property instance = new Property();
-        instance.setUnitNum(unitNum);
-        int expected = 6;
-        int result = instance.getUnitNum();
-        assertEquals(expected,result);
+        assertEquals(expected, result);
     }
 
     /**
@@ -79,7 +62,7 @@ public class testProperty {
         instance.setSchoolTax(expResult);
         double result = instance.getSchoolTax();
         assertEquals(expResult, result, 0.0);
-       
+
     }
 
     /**
@@ -176,26 +159,13 @@ public class testProperty {
         List<Repair> result = instance.getRepairs();
         assertEquals(expResult, result);
     }
+
     /**
-     * Test of toString method, of class Property.
+     *
+     * test addMortgage
      */
     @Test
-    public void testToString() {
-        Property instance = new Property();
-        String expResult = "Property{Id=1, Address=2 rue laval}";
-        instance.setAddress("2 rue laval");
-        instance.setPropertyId(1);
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        
-    }
-    
-    /**
-     * 
-     * test addMortgage 
-     */
-    @Test
-    public void testAddMortgage(){
+    public void testAddMortgage() {
         Property instance = new Property();
         Mortgage m = new Mortgage();
         instance.addMortgage(m);
@@ -203,13 +173,13 @@ public class testProperty {
         int result = instance.getMortgages().size();
         assertEquals(expResult, result);
     }
-    
-     /**
-     * 
-     * test addMortgage 
+
+    /**
+     *
+     * test addMortgage
      */
     @Test
-    public void testAddLease(){
+    public void testAddLease() {
         Property instance = new Property();
         Mortgage m = new Mortgage();
         instance.addMortgage(m);
@@ -217,13 +187,13 @@ public class testProperty {
         int result = instance.getMortgages().size();
         assertEquals(expResult, result);
     }
-    
+
     /**
-     * 
+     *
      * test addRepair
      */
     @Test
-    public void testAddRepair(){
+    public void testAddRepair() {
         Property instance = new Property();
         Repair r = new Repair();
         instance.addRepair(r);
@@ -231,13 +201,13 @@ public class testProperty {
         int result = instance.getRepairs().size();
         assertEquals(expResult, result);
     }
-    
-     /**
-     * 
+
+    /**
+     *
      * test addUtility
      */
     @Test
-    public void testAddUtility(){
+    public void testAddUtility() {
         Property instance = new Property();
         Utility u = new Utility();
         instance.addUtility(u);
@@ -245,13 +215,13 @@ public class testProperty {
         int result = instance.getUtilities().size();
         assertEquals(expResult, result);
     }
-    
+
     /**
-     * 
-     * test removeMortgage 
+     *
+     * test removeMortgage
      */
     @Test
-    public void testRemoveMortgage(){
+    public void testRemoveMortgage() {
         Property instance = new Property();
         Mortgage m1 = new Mortgage();
         Mortgage m2 = new Mortgage();
@@ -262,13 +232,13 @@ public class testProperty {
         boolean result = instance.getMortgages().contains(m1);
         assertEquals(expResult, result);
     }
-    
+
     /**
-     * 
-     * test removeRepair 
+     *
+     * test removeRepair
      */
     @Test
-    public void testRemoveRepair(){
+    public void testRemoveRepair() {
         Property instance = new Property();
         Repair r1 = new Repair();
         Repair r2 = new Repair();
@@ -279,13 +249,13 @@ public class testProperty {
         boolean result = instance.getRepairs().contains(r2);
         assertEquals(expResult, result);
     }
-    
-       /**
-     * 
-     * test removeLease 
+
+    /**
+     *
+     * test removeLease
      */
     @Test
-    public void testRemoveLease(){
+    public void testRemoveLease() {
         Property instance = new Property();
         Lease l1 = new Lease();
         Lease l2 = new Lease();
@@ -296,13 +266,13 @@ public class testProperty {
         boolean result = instance.getLeases().contains(l2);
         assertEquals(expResult, result);
     }
-    
-         /**
-     * 
+
+    /**
+     *
      * test removeUtility
      */
     @Test
-    public void testRemoveUtility(){
+    public void testRemoveUtility() {
         Property instance = new Property();
         Utility u1 = new Utility();
         Utility u2 = new Utility();
@@ -313,7 +283,5 @@ public class testProperty {
         boolean result = instance.getUtilities().contains(u2);
         assertEquals(expResult, result);
     }
-    
 
-    
 }

@@ -10,10 +10,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="905.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.PropertyController">
    <top>
-      <AnchorPane prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: #6d597a;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: #6d597a;" stylesheets="@css/shelter.css" BorderPane.alignment="CENTER">
          <children>
             <Button alignment="CENTER_RIGHT" layoutX="820.0" layoutY="27.0" mnemonicParsing="false" onAction="#switchNext" style="-fx-background-color: #0099ff;" styleClass="next" text="Next" textAlignment="RIGHT" textFill="WHITE" AnchorPane.rightAnchor="14.6666666666667">
             </Button>
@@ -26,44 +27,66 @@
    <left>
       <AnchorPane prefHeight="446.0" prefWidth="413.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="228.0" text=" Address(street name &amp; unit number)" />
-            <TextField fx:id="address" layoutX="220.0" layoutY="21.0" prefHeight="25.0" prefWidth="163.0" />
-            <Label layoutX="10.0" layoutY="57.0" prefHeight="30.0" prefWidth="177.0" text="Type" />
-            <TextField fx:id="type" layoutX="220.0" layoutY="59.0" prefHeight="25.0" prefWidth="164.0" />
-            <Label layoutX="10.0" layoutY="100.0" prefHeight="30.0" prefWidth="173.0" text="Rent Amount" />
-            <TextField fx:id="rentAmount" layoutX="221.0" layoutY="102.0" prefHeight="25.0" prefWidth="163.0" />
-            <Label layoutX="10.0" layoutY="145.0" prefHeight="30.0" prefWidth="173.0" text="School Tax" />
-            <TextField fx:id="schoolTax" layoutX="221.0" layoutY="147.0" prefHeight="25.0" prefWidth="164.0" />
-            <Label layoutX="11.0" layoutY="188.0" prefHeight="30.0" prefWidth="172.0" text="Property Tax" />
-            <TextField fx:id="propertyTax" layoutX="221.0" layoutY="190.0" prefHeight="25.0" prefWidth="164.0" />
-            <Label layoutX="11.0" layoutY="229.0" prefHeight="30.0" prefWidth="176.0" text="Vacant ( enter true or false)" />
-            <Label layoutX="11.0" layoutY="269.0" prefHeight="30.0" prefWidth="176.0" text="InsuranceId" />
-            <ComboBox fx:id="vacant" layoutX="222.0" layoutY="231.0" prefHeight="25.0" prefWidth="163.0" />
-            <ComboBox fx:id="insurance" layoutX="222.0" layoutY="273.0" prefHeight="27.0" prefWidth="163.0" promptText="Choose Insurance" />
-            <Label layoutX="9.0" layoutY="314.0" prefHeight="30.0" prefWidth="176.0" text="Number Of units" />
-            <TextField fx:id="numOfUnit" layoutX="222.0" layoutY="316.0" prefHeight="25.0" prefWidth="164.0" />
-            <Button fx:id="addProperty" layoutX="93.0" layoutY="364.0" mnemonicParsing="false" onAction="#addNewProperty" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
+            <Label layoutX="10.0" layoutY="19.0" prefHeight="30.0" prefWidth="204.0" text=" Address(street name &amp; unit#) :" />
+            <TextField fx:id="address" layoutX="220.0" layoutY="21.0" prefHeight="25.0" prefWidth="183.0" />
+            <Label layoutX="14.0" layoutY="58.0" prefHeight="30.0" prefWidth="177.0" text="Type :" />
+            <ComboBox fx:id="type" layoutX="220.0" layoutY="60.0" prefHeight="25.0" prefWidth="183.0" />
+            <Label layoutX="10.0" layoutY="127.0" prefHeight="30.0" prefWidth="173.0" text="Rent Amount :" />
+            <TextField fx:id="rentAmount" layoutX="220.0" layoutY="129.0" prefHeight="25.0" prefWidth="183.0" text="0" />
+            <Label layoutX="10.0" layoutY="157.0" prefHeight="30.0" prefWidth="173.0" text="School Tax :" />
+            <TextField fx:id="schoolTax" layoutX="221.0" layoutY="157.0" prefHeight="25.0" prefWidth="182.0" promptText="0" />
+            <Label layoutX="11.0" layoutY="187.0" prefHeight="30.0" prefWidth="172.0" text="Property Tax :" />
+            <TextField fx:id="propertyTax" layoutX="221.0" layoutY="189.0" prefHeight="25.0" prefWidth="181.0" promptText="0" />
+            <Label layoutX="9.0" layoutY="224.0" prefHeight="30.0" prefWidth="185.0" text="Vacant ( enter true or false):" />
+            <Label layoutX="9.0" layoutY="264.0" prefHeight="30.0" prefWidth="176.0" text="Insurance:" />
+            <ComboBox fx:id="vacant" layoutX="222.0" layoutY="226.0" prefHeight="25.0" prefWidth="180.0" />
+            <ComboBox fx:id="insurance" layoutX="223.0" layoutY="265.0" prefHeight="27.0" prefWidth="181.0" promptText="Choose Insurance" />
+            <Label layoutX="9.0" layoutY="304.0" prefHeight="30.0" prefWidth="176.0" text="Number Of rooms :" />
+            <TextField fx:id="numOfRooms" layoutX="223.0" layoutY="306.0" prefHeight="25.0" prefWidth="182.0" text="0" />
+            <Button fx:id="addProperty" layoutX="81.0" layoutY="398.0" mnemonicParsing="false" onAction="#addNewProperty" prefHeight="25.0" prefWidth="61.0" style="-fx-background-color: #07b8b4;" text="Add">
 
             </Button>
-            <Button layoutX="206.0" layoutY="364.0" mnemonicParsing="false" onAction="#saveUpdates" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #eec591;" text="Save">
+            <Button fx:id="save" disable="true" layoutX="206.0" layoutY="399.0" mnemonicParsing="false" onAction="#saveUpdates" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #eec591;" text="Save">
             </Button>
+            <Label fx:id="changeText" layoutX="12.0" layoutY="344.0" prefHeight="29.0" prefWidth="199.0" text="Pass------------&gt;" />
+            <TextField fx:id="oddAttribute" disable="true" layoutX="224.0" layoutY="346.0" prefHeight="25.0" prefWidth="181.0" text="0" />
+            <Label layoutX="10.0" layoutY="90.0" prefHeight="30.0" prefWidth="204.0" text="Appartment# :" />
+            <TextField fx:id="appartment" disable="true" layoutX="220.0" layoutY="92.0" prefHeight="25.0" prefWidth="183.0" text="0" />
          </children>
       </AnchorPane>
    </left>
    <center>
-      <TableView fx:id="tableView" editable="true" prefHeight="446.0" prefWidth="307.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="id" prefWidth="75.0" resizable="false" text="propertyId" />
-          <TableColumn fx:id="addr" minWidth="0.0" prefWidth="51.333343505859375" text="address" />
-            <TableColumn fx:id="amount" minWidth="0.0" prefWidth="66.66668701171875" text="rent_amount" />
-            <TableColumn fx:id="propertyType" minWidth="0.0" prefWidth="67.3333740234375" text="type" />
-            <TableColumn fx:id="schoTax" prefWidth="67.3333740234375" text="school_tax" />
-            <TableColumn fx:id="propTax" prefWidth="54.00006103515625" text="property_tax" />
-            <TableColumn fx:id="insu" prefWidth="146.6666259765625" text="insurance" />
-            <TableColumn fx:id="propVacant" prefWidth="75.0" text="vacant" />
-            <TableColumn fx:id="pieces" prefWidth="75.0" text="rooms" />
-        </columns>
-      </TableView>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="906.0" prefWidth="1150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="tableView" editable="true" prefHeight="448.0" prefWidth="1150.0">
+                    <columns>
+                      <TableColumn fx:id="id" prefWidth="75.0" resizable="false" text="propertyId" />
+                      <TableColumn fx:id="addr" minWidth="0.0" prefWidth="51.333343505859375" text="address" />
+                        <TableColumn fx:id="amount" minWidth="0.0" prefWidth="66.66668701171875" text="rent_amount" />
+                        <TableColumn fx:id="propertyType" minWidth="0.0" prefWidth="67.3333740234375" text="type" />
+                        <TableColumn fx:id="schoTax" prefWidth="67.3333740234375" text="school_tax" />
+                        <TableColumn fx:id="propTax" prefWidth="54.00006103515625" text="property_tax" />
+                        <TableColumn fx:id="insu" prefWidth="146.6666259765625" text="insurance" />
+                        <TableColumn fx:id="propVacant" prefWidth="75.0" text="vacant" />
+                        <TableColumn fx:id="pieces" prefWidth="75.0" text="rooms" />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="tableView2" editable="true" prefHeight="448.0" prefWidth="803.0">
+                    <columns>
+                      <TableColumn fx:id="unit_id" editable="false" prefWidth="75.0" text="plex_unit_id" />
+                      <TableColumn fx:id="appartment_num" prefWidth="75.0" text="appartment#" />
+                        <TableColumn fx:id="t2_rent" prefWidth="75.0" text="rent_amount" />
+                        <TableColumn fx:id="t2_vacant" prefWidth="75.0" text="vacant" />
+                        <TableColumn fx:id="plex_id" editable="false" prefWidth="75.0" text="plex_id" />
+                        <TableColumn fx:id="unitRooms" prefWidth="75.0" text="rooms" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
    </center>
    <bottom>
       <AnchorPane prefHeight="94.0" prefWidth="905.0" BorderPane.alignment="CENTER">
@@ -78,18 +101,19 @@
          </children></AnchorPane>
    </bottom>
    <right>
-      <AnchorPane prefHeight="446.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="415.0" prefWidth="93.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="60.0" layoutY="175.0" mnemonicParsing="false" onAction="#deleteProperty" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #9f4347;" text="Delete">
+            <Button fx:id="delete" disable="true" layoutX="52.0" layoutY="132.0" mnemonicParsing="false" onAction="#deleteProperty" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #9f4347;" text="Delete">
 
             </Button>
-            <Button layoutX="53.0" layoutY="73.0" mnemonicParsing="false" onAction="#updateProperty" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="edit">
+            <Button fx:id="edit" disable="true" layoutX="51.0" layoutY="91.0" mnemonicParsing="false" onAction="#updateProperty" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="Edit">
 
             </Button>
-            <Label layoutX="18.0" layoutY="14.0" prefHeight="42.0" prefWidth="129.0" text="Select property from table and click on edit" wrapText="true" />
-            <Label layoutX="20.0" layoutY="119.0" prefHeight="42.0" prefWidth="129.0" text="Select property from table and click on delete" wrapText="true" />
-            <Label layoutX="20.0" layoutY="236.0" prefHeight="42.0" prefWidth="129.0" text="Select property from table and click on view" wrapText="true" />
-            <Button layoutX="68.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchToView" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #aaf683;" text="View" />
+            <Label layoutX="10.0" layoutY="7.0" prefHeight="72.0" prefWidth="133.0" text="Select  Property in the table to edit/delete/view" wrapText="true" />
+            <Label layoutX="20.0" layoutY="236.0" prefHeight="82.0" prefWidth="129.0" text="Select a plex property in table to edit/view plex " wrapText="true" />
+            <Button fx:id="view" disable="true" layoutX="52.0" layoutY="172.0" mnemonicParsing="false" onAction="#switchToView" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #aaf683;" text="View" />
+            <Button fx:id="editPproperty" disable="true" layoutX="52.0" layoutY="332.0" mnemonicParsing="false" onAction="#editPlexProperty" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #fbf1b4;" text="Edit" />
+            <Button fx:id="viewPproperty" disable="true" layoutX="52.0" layoutY="383.0" mnemonicParsing="false" onAction="#viewPlexProperty" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #aaf683;" text="View" />
          </children>
       </AnchorPane>
    </right>

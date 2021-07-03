@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="603.0" stylesheets="@css/shelter.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.realestate.UpdatePlexPropertyController">
+   <children>
+      <TextField fx:id="apartment" layoutX="241.0" layoutY="79.0" />
+      <ComboBox fx:id="vacant" layoutX="241.0" layoutY="127.0" prefWidth="150.0" />
+      <TextField fx:id="rooms" layoutX="242.0" layoutY="182.0" prefHeight="25.0" prefWidth="150.0" />
+      <TextField fx:id="rentAmount" layoutX="243.0" layoutY="235.0" />
+      <Button layoutX="250.0" layoutY="289.0" mnemonicParsing="false" onAction="#saveUpdatedUnit" prefHeight="25.0" prefWidth="53.0" style="-fx-background-color: #eec591;" text="Save" />
+      <Button layoutX="334.0" layoutY="289.0" mnemonicParsing="false" onAction="#clearAll" prefHeight="25.0" prefWidth="53.0" style="-fx-background-color: #87CEFA;" text="Clear" />
+      <Label layoutX="25.0" layoutY="79.0" prefHeight="25.0" prefWidth="159.0" text="Apartment# :" />
+      <Label layoutX="22.0" layoutY="127.0" prefHeight="25.0" prefWidth="204.0" text="Vacant ( enter true(yes) or false(No)):" />
+      <Label layoutX="25.0" layoutY="182.0" prefHeight="25.0" prefWidth="159.0" stylesheets="@css/shelter.css" text="Number of rooms:" />
+      <Label layoutX="22.0" layoutY="235.0" prefHeight="25.0" prefWidth="159.0" text="Rent Amount :" />
+      <Label fx:id="description" layoutX="25.0" layoutY="23.0" prefHeight="49.0" prefWidth="559.0" stylesheets="@css/shelter.css" text="You are editing................." wrapText="true" />
+   </children>
+</AnchorPane>

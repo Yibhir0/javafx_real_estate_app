@@ -1,16 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.realestate.model;
 
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 /**
- *
- * @author T450
+ * class represents repair object
+ * @author Yassine Ibhir
  */
 public class Repair {
 
@@ -21,11 +18,23 @@ public class Repair {
     private int repairId;
     private String type;
     private double cost;
-    private Date startDate ;
-    private Date endDate ;
+    private LocalDate startDate ;
+    private LocalDate endDate ;
     private Property property;
     private Contractor contractor;
-
+    
+    // update existent repair
+    public void updateRepair(Repair repairUpdated) {
+        this.repairId = repairUpdated.repairId;
+        this.type= repairUpdated.type;
+        this.cost= repairUpdated.cost;
+        this.startDate = repairUpdated.startDate;
+        this.endDate = repairUpdated.endDate;
+        this.property = repairUpdated.property;
+        this.contractor= repairUpdated.contractor;
+    }
+    
+    // getters and setters
     public int getRepairId() {
         return repairId;
     }
@@ -38,11 +47,11 @@ public class Repair {
         return cost;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -66,11 +75,11 @@ public class Repair {
         this.cost = cost;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -81,6 +90,5 @@ public class Repair {
     public void setContractor(Contractor contractor) {
         this.contractor = contractor;
     }
-    
-    
+ 
 }
