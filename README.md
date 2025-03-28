@@ -7,9 +7,6 @@ This project is a Java-based desktop application designed to manage real estate 
 
 ---
 
-
----
-
 ## 🛠️ Features
 
 - Manage rental properties (units, duplexes, apartments, houses)
@@ -34,28 +31,23 @@ Update the DB credentials (URL, username, password) to match your local MySQL se
 
 ### 2️⃣ Create the Database Tables
 
-Run the SQL script `createTable.sql` (located in `src/com/mycompany/realestate/sql/`) using your preferred MySQL client (e.g., MySQL Workbench, CLI, or DBeaver):
+Run the SQL script `createTable.sql` (located in `src/com/mycompany/realestate/sql/`) using your preferred MySQL client (e.g., MySQL Workbench, CLI, or DBeaver): 
 
-```sql
--- Example
-source path/to/createTable.sql;
 
 ### 3️⃣ Insert Sample Data (Optional)
-
 
 Run insertTable.sql inside the package com.mycompany.realestate.sql(optional)
 
 ### 4️⃣ Run the Application
 
 # If using terminal
+
+```bash
 javac com/mycompany/realestate/App.java
 java com.mycompany.realestate.App
+
+```
 
 Or run it directly from your IDE (NetBeans, IntelliJ, Eclipse, etc.).
-
-
-# If using terminal
-javac com/mycompany/realestate/App.java
-java com.mycompany.realestate.App
 
 
